@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "@/node_modules/next/link";
 import { usePathname } from "next/navigation";
@@ -23,7 +23,7 @@ const menuItems = [
 ];
 
 const Aside = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <div className="h-screen bg-gray p-10">
       <h2 className="text-3xl mb-10">Logo</h2>
@@ -33,11 +33,14 @@ const Aside = () => {
           {menuItems &&
             menuItems.map((item, key) => {
               return (
-                <Link href={item.path}>
-                <li key={key} className={`flex gap-2 p-3 pr-16 rounded-xl hover:bg-green hover:text-black duration-500 ease ${pathname === item.path ? "bg-green text-black " : ""}`}>
-                  {item.icon}
-                  {item.name}
-                </li>
+                <Link key={key} href={item.path}>
+                  <li
+                    className={`flex gap-2 p-3 pr-16 rounded-xl hover:bg-green hover:text-black duration-500 ease ${
+                      pathname === item.path ? "bg-green text-black " : ""
+                    }`}>
+                    {item.icon}
+                    {item.name}
+                  </li>
                 </Link>
               );
             })}
