@@ -4,7 +4,7 @@ import { TProduct } from "@/models/product/index";
 import { Button } from "@/ui/Button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { EventHandler, MouseEventHandler, useState } from "react";
 import Input from "../FormControls/Input";
 import Select from "../FormControls/Select";
 import { inputsData } from "./inputsData";
@@ -43,6 +43,10 @@ export default function FormAddProduct() {
     }
   };
 
+  const closeModalOutside = (e: { target: HTMLFormElement }) => {
+    e?.target?.localName === "form" && setIsOpenModal(false);
+  };
+
   console.log(formData);
 
   return (
@@ -51,9 +55,7 @@ export default function FormAddProduct() {
       {isOpenModal && (
         <form
           data-close="true"
-          onClick={(e) =>
-            e.target.localName === "form" && setIsOpenModal(false)
-          }
+          onClick={(e) => closeModalOutside(e as any)}
           onSubmit={() => addNewProduct()}
           className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-gray w-[35vw] rounded-2xl px-4 py-6 flex flex-col gap-4">
