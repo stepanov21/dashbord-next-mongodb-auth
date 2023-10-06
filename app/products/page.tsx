@@ -5,7 +5,7 @@ import ProductItem from "@/components/ProductItem/ProductItem";
 import { TProduct } from "@/models/product/index";
 import React, { useEffect, useState } from "react";
 
-const page = () => {
+const ProductPage = () => {
   const [products, setProducts] = useState<TProduct[]>([]);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProductPage;
