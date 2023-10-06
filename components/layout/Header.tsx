@@ -9,9 +9,9 @@ const Header = () => {
   return (
     <div className="bg-gray p-4 m-6 flex rounded-2xl">
       {status === "unauthenticated" ? (
-        <Button onClick={() => signOut()}>Sign Out</Button>
-      ) : (
         <Button onClick={() => signIn()}>Sign In</Button>
+      ) : (
+        <Button onClick={() => signOut()}>Sign Out</Button>
       )}
     </div>
   );
