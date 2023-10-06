@@ -4,14 +4,10 @@ import GoogleProvider from "next-auth/providers/google"
 import NextAuth from 'next-auth/next';
 import {NextAuthOptions} from 'next-auth';
 import { AdapterUser } from 'next-auth/adapters';
-import { NextResponse } from 'next/server';
-import { Http2ServerResponse } from 'http2';
 
 type TUser = {
   name: string; email: string
 }
-
-const URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -30,7 +26,7 @@ const authOptions: NextAuthOptions = {
           const isUserExists: boolean | null = await User.findOne({email})
 
           if(!isUserExists) {
-            const res: Response = await fetch(`${URL}/api/user`, {
+            const res: Response = await fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
               method: 'POST', 
               headers: {
                 "Content-Type": 'application/json'
