@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "mongoose": "^7.5.3",
     "next": "latest",
     "next-auth": "^4.23.2",
     "react": "latest",
     "react-apexcharts": "^1.4.1",
     "react-dom": "latest",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
     "@types/node": "latest",

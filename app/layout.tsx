@@ -1,8 +1,6 @@
 "use client";
 
 import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Aside from "@/components/layout/Aside";
 import NextAuthProvider from "@/auth-provider/index";

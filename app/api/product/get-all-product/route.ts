@@ -1,24 +1,24 @@
+import Product, { TProduct } from '@/models/product/index';
 import connectToDB from "@/database/index";
-import User from "@/models/user/index";
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
+export const dynamic = 'force-dynamic'
 
-export async function POST(req) {
+export async function GET(req: NextRequest) {
   try{
     await connectToDB()
-    const {name, email} = await req.json()
 
-    const newUser = await User.create({name, email})
+    const allProducts: TProduct[] = await Product.find({})
 
-    if(newUser) {
+    if(allProducts) {
       return NextResponse.json({
         success: true,
-        message: "Пользователь зарегистрирован"
+        data: allProducts
       })
     } else {
       return NextResponse.json({
         success: false,
-        message: "Ошибка регистрации"
+        message: "Продукты не найдены"
       })
     }
   } catch (e) {

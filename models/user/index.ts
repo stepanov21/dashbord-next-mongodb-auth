@@ -9,12 +9,13 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true
-    }
+    },
+    products: []
   }, {
     timestamps: true
   }
 );
 
-const User = mongoose.models.User || mongoose.model('User', userSchema)
+const User = mongoose.models.Users || mongoose.model('Users', userSchema)
 
 export default User;
