@@ -23,16 +23,13 @@ export default function FormAddProduct() {
   const addNewProduct = async () => {
     console.log("Добавить");
     try {
-      const res = await fetch(
-        `${process.env.NEXTAUTH_URL}/api/product/add-product`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...formData, email: userData?.user?.email! }),
-        }
-      );
+      const res = await fetch(`/api/product/add-product`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, email: userData?.user?.email! }),
+      });
 
       const data = await res.json();
       console.log(

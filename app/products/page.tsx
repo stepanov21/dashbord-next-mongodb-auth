@@ -11,13 +11,10 @@ export default async function ProductsPage() {
   useEffect(() => {
     async function getAllProducts() {
       try {
-        const res = await fetch(
-          `${process.env.NEXTAUTH_URL}/api/product/get-all-product`,
-          {
-            method: "GET",
-            cache: "no-store",
-          }
-        );
+        const res = await fetch(`/api/product/get-all-product`, {
+          method: "GET",
+          cache: "no-store",
+        });
 
         const { data } = await res.json();
         setProducts(data);
