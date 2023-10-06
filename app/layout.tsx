@@ -19,15 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <NextAuthProvider>
-        <body className="flex bg-ourBlack">
+      <body className="flex bg-ourBlack">
+        <NextAuthProvider>
           <Aside />
           <div className="flex flex-1 flex-col">
             <Header />
             <main>{children}</main>
           </div>
-        </body>
-      </NextAuthProvider>
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }
