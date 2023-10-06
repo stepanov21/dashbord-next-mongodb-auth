@@ -20,6 +20,7 @@ const authOptions: NextAuthOptions = {
       clientSecret: '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'
     })
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({user, account}): Promise<typeof User | AdapterUser> {
       if(account?.provider === 'google') {
