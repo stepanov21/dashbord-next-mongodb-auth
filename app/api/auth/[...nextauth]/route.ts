@@ -11,6 +11,8 @@ type TUser = {
   name: string; email: string
 }
 
+const URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+
 const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -27,7 +29,7 @@ const authOptions: NextAuthOptions = {
           const isUserExists: boolean | null = await User.findOne({email})
 
           if(!isUserExists) {
-            const res: Response = await fetch('http://localhost:3000/api/user', {
+            const res: Response = await fetch(`${URL}/api/user`, {
               method: 'POST', 
               headers: {
                 "Content-Type": 'application/json'

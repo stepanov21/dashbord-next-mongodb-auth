@@ -12,7 +12,9 @@ export default async function ProductsPage() {
     async function getAllProducts() {
       try {
         const res = await fetch(
-          "http://localhost:3000/api/product/get-all-product",
+          `${
+            process.env.NEXTAUTH_URL || "http://localhost:3000"
+          }/api/product/get-all-product`,
           {
             method: "GET",
             cache: "no-store",
