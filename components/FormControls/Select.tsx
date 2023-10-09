@@ -1,4 +1,7 @@
-const Select = () => {
+import { FC, SelectHTMLAttributes } from "react";
+import { selectOption } from "./selectOption";
+
+const Select: FC<SelectHTMLAttributes<HTMLSelectElement>> = ({ ...props }) => {
   return (
     <div className="w-full">
       <label
@@ -7,15 +10,14 @@ const Select = () => {
         Category
       </label>
       <select
+        {...props}
         id="category"
-        value="Select Category"
         name="category"
         className="border block border-green bg-black p-3 rounded-md w-full">
         <option value="TV">Select Category</option>
-        <option value="TV">TV/Monitors</option>
-        <option value="PC">PC</option>
-        <option value="GA">Gaming/Console</option>
-        <option value="PH">Phones</option>
+        {selectOption.map((option) => {
+          return <option value={option}>{option}</option>;
+        })}
       </select>
     </div>
   );

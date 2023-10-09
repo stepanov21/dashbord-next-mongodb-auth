@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export interface TProduct {
+  _id?: string;
   productName: string;
   count: number;
   price: number;
@@ -8,12 +9,13 @@ export interface TProduct {
   email?: string; 
 }
 
-const ProductSchema = new mongoose.Schema(
+export const ProductSchema = new mongoose.Schema(
   {
     productName: String,
     count: Number,
     price: Number,
     category: String,
+    email: String
   }, {
     timestamps: true
   }

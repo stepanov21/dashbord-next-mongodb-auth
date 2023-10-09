@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className="flex bg-ourBlack">
         <NextAuthProvider>
           <Aside />
-          <div className="flex flex-1 flex-col">
+          <div className="flex flex-1 flex-col ml-[calc(25vw+24px)] mr-6 my-6 sm:m-4">
             <Header />
             <main>{children}</main>
           </div>

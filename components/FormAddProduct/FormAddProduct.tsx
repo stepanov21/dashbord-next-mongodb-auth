@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { EventHandler, MouseEventHandler, useState } from "react";
 import Input from "../FormControls/Input";
 import Select from "../FormControls/Select";
+import FormHeader from "./FormHeader";
 import { inputsData } from "./inputsData";
 
 export default function FormAddProduct() {
@@ -17,6 +18,7 @@ export default function FormAddProduct() {
     count: 0,
     price: 0,
     category: "",
+    email: "",
   });
   const router = useRouter();
 
@@ -52,13 +54,14 @@ export default function FormAddProduct() {
   return (
     <>
       <Button onClick={() => setIsOpenModal(true)}>Add new product</Button>
+      <FormHeader />
       {isOpenModal && (
         <form
           data-close="true"
           onClick={(e) => closeModalOutside(e as any)}
           onSubmit={() => addNewProduct()}
-          className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-gray w-[35vw] rounded-2xl px-4 py-6 flex flex-col gap-4">
+          className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+          <div className="bg-gray w-full max-w-[350px] rounded-2xl px-4 py-6 flex flex-col gap-4">
             {inputsData &&
               inputsData.length &&
               inputsData.map((input, key) => {
@@ -79,7 +82,12 @@ export default function FormAddProduct() {
                   />
                 );
               })}
-            <Select />
+            <Select
+              value={formData.category}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, category: e.target.value }))
+              }
+            />
             <Button type="submit" className="w-full mt-2">
               Add New Product
             </Button>

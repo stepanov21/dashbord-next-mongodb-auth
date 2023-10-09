@@ -1,3 +1,4 @@
+import { ProductSchema } from './../product/index';
 const  {default: mongoose} = require('mongoose')
 
 const userSchema = new mongoose.Schema(

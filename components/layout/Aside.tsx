@@ -25,20 +25,20 @@ const menuItems = [
 const Aside = () => {
   const pathname = usePathname();
   return (
-    <div className="h-screen bg-gray p-10">
-      <h2 className="text-3xl mb-10">Logo</h2>
+    <div className="h-screen bg-gray p-10 fixed w-[25vw] sm:h-auto bottom-0 sm:w-full sm:p-4">
+      <h2 className="text-3xl mb-10 sm:hidden">Logo</h2>
       <nav>
-        <h4 className="opacity-40 mb-4">Menu</h4>
-        <ul className="flex flex-col gap-4">
+        <h4 className="opacity-40 mb-4 sm:hidden">Menu</h4>
+        <ul className="flex flex-col gap-4 sm:flex-row sm:overflow-auto">
           {menuItems &&
             menuItems.map((item, key) => {
               return (
                 <Link key={key} href={item.path}>
                   <li
-                    className={`flex gap-2 p-3 pr-16 rounded-xl hover:bg-green hover:text-black duration-500 ease ${
-                      pathname === item.path ? "bg-green text-black " : ""
+                    className={`flex gap-2 p-3 rounded-xl hover:bg-green duration-500 ease ${
+                      pathname === item.path ? "bg-green" : ""
                     }`}>
-                    {item.icon}
+                    <span>{item.icon}</span>
                     {item.name}
                   </li>
                 </Link>

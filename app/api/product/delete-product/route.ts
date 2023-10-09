@@ -1,4 +1,4 @@
-import Product, { TProduct } from '@/models/product/index';
+import Product from '@/models/product/index';
 import connectToDB from "@/database/index";
 import { NextRequest, NextResponse } from "next/server"
 
@@ -7,19 +7,21 @@ export const dynamic = 'force-dynamic'
 export async function POST(req: NextRequest) {
   try{
     await connectToDB()
-    const product : TProduct = await req.json()
+    const {_id} = await req.json()
+    
+    const currentUser = await Product.findByIdAndDelete({_id: _id})
 
-    const addedProduct = await Product.create(product)
+    console.log("🚀 ~ file: route.ts:19 ~ POST ~ currentUser:", currentUser)
 
-    if(addedProduct) {
+    if(currentUser) {
       return NextResponse.json({
         success: true,
-        message: "Продукт добавлен"
+        message: "Продукт удален"
       })
     } else {
       return NextResponse.json({
         success: false,
-        message: "Ошибка добавления продукта"
+        message: "Ошибка удаления продукта"
       })
     }
   } catch (e) {
