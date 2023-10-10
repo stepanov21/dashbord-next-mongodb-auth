@@ -1,9 +1,18 @@
 import Charts from "@/components/Charts/Charts";
-import { selectOption } from "@/components/FormControls/selectOption";
 import { headers } from "next/headers";
 import { TProduct } from "@/models/product/index";
 
 export const dynamic = "force-dynamic";
+
+const selectOption = [
+  "Продукты",
+  "Транспорт",
+  "Жилье",
+  "Здоровье",
+  "Образование",
+  "Связь",
+  "Неожиданные расходы",
+];
 
 async function getAllMyProducts() {
   try {
