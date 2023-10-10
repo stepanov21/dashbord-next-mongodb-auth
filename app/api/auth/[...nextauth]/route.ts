@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
           const isUserExists: boolean | null = await User.findOne({email})
 
           if(!isUserExists) {
-            const res: Response = await fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
+            const res: Response = await fetch(`/api/user`, {
               method: 'POST', 
               headers: {
                 "Content-Type": 'application/json'
