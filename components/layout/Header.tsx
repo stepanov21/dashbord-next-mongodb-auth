@@ -2,25 +2,19 @@
 
 import { Button } from "@/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import UserBage from "./UserBage";
 
 const Header = () => {
-  const [userData, setUserData] = useState({});
   const { status, data } = useSession();
-
-  useEffect(() => {
-    setUserData({ ...data });
-  }, [data]);
 
   return (
     <div className="bg-gray p-4 flex rounded-2xl w-full mb-4">
       {status === "authenticated" ? (
         <UserBage
-          avatar={userData?.user?.image!}
-          username={userData?.user?.name!}
-          email={userData?.user?.email!}
+          avatar={data?.user?.image!}
+          username={data?.user?.name!}
+          email={data?.user?.email!}
         />
       ) : null}
 

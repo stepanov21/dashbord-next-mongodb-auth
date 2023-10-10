@@ -1,7 +1,7 @@
 import Charts from "@/components/Charts/Charts";
 import { selectOption } from "@/components/FormControls/selectOption";
 import { headers } from "next/headers";
-import getDate from "date-fns/getDate";
+import { TProduct } from "@/models/product/index";
 
 async function getAllMyProducts() {
   try {
@@ -23,13 +23,18 @@ async function getAllMyProducts() {
 
 export default async function Home() {
   const data = await getAllMyProducts();
-  const days = [...data.map((item) => getDate(new Date(item.createdAt)))];
-  const currentDays = Array.from(new Set(days));
 
-  const accum = data.reduce((acc, item) => acc + item.price, 0);
-  console.log("🚀 ~ file: page.tsx:30 ~ Home ~ accum:", accum);
+  const getAccumFromCategory = (data: TProduct[], filter: string) => {
+    const category = data.filter((item) =>
+      item.category === filter ? item : null
+    );
+    return category.reduce((a, i) => a + i.price, 0);
+  };
 
-  console.log("🚀 ~ file: page.tsx:24 ~ Home ~ data:", data);
+  console.log(
+    "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
+    getAccumFromCategory(data, "Продукты")
+  );
 
   const state = {
     options: {
@@ -37,13 +42,15 @@ export default async function Home() {
         id: "basic-bar",
       },
       xaxis: {
-        categories: currentDays,
+        categories: [...selectOption],
       },
     },
     series: [
       {
         name: "series-1",
-        data: [accum],
+        data: selectOption.map((item, i) =>
+          getAccumFromCategory(data, selectOption[i])
+        ),
       },
     ],
   };

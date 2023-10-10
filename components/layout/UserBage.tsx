@@ -11,9 +11,9 @@ const UserBage: FC<TUserBage> = ({ avatar, username, email }) => {
   return (
     <div className="flex">
       <div className="rounded-full overflow-hidden">
-        <Image src={avatar} width={50} height={50} alt="avatar" />
+        {avatar && <Image src={avatar} width={50} height={50} alt="avatar" />}
       </div>
-      <div className="flex flex-col ml-4 items-center justify-center">
+      <div className="flex flex-col ml-4 justify-center">
         <span className="">{username}</span>
         <span className="opacity-40 sm:hidden">{email}</span>
       </div>

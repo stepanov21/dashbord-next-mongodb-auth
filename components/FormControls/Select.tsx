@@ -15,8 +15,12 @@ const Select: FC<SelectHTMLAttributes<HTMLSelectElement>> = ({ ...props }) => {
         name="category"
         className="border block border-green bg-black p-3 rounded-md w-full">
         <option value="TV">Select Category</option>
-        {selectOption.map((option) => {
-          return <option value={option}>{option}</option>;
+        {selectOption.map((option, key) => {
+          return (
+            <option key={key} value={option}>
+              {option}
+            </option>
+          );
         })}
       </select>
     </div>
