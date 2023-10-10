@@ -22,6 +22,10 @@ const Home = () => {
       }
     }
     getAllMyProducts().then((res) => setData(res));
+    console.log(
+      "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
+      getAccumFromCategory(data, "Продукты")
+    );
   }, []);
 
   const getAccumFromCategory = (data: TProduct[], filter: string) => {
@@ -31,29 +35,6 @@ const Home = () => {
     return category.reduce((a, i) => a + i.price, 0);
   };
 
-  console.log(
-    "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
-    getAccumFromCategory(data, "Продукты")
-  );
-
-  const state = {
-    options: {
-      chart: {
-        id: "bar",
-      },
-      xaxis: {
-        categories: [...selectOption],
-      },
-    },
-    series: [
-      {
-        name: "series-1",
-        data: selectOption.map((item, i) =>
-          getAccumFromCategory(data, selectOption[i])
-        ),
-      },
-    ],
-  };
   return <div></div>;
 };
 

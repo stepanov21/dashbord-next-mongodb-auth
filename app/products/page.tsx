@@ -17,6 +17,7 @@ const ProductPage = () => {
           cache: "no-store",
         });
         const { data } = await res.json();
+        console.log("🚀 ~ file: page.tsx:20 ~ getAllMyProducts ~ data:", data);
 
         return data;
       } catch (error) {
@@ -25,11 +26,12 @@ const ProductPage = () => {
     }
     getAllMyProducts().then((res) => setData(res));
   }, []);
+
   return (
     <div className="">
       <FormAddProduct />
-      {data &&
-        data.map((product, key) => {
+      {data.length &&
+        data?.map((product, key) => {
           return <ProductItem key={key} {...product} _id={product._id} />;
         })}
     </div>

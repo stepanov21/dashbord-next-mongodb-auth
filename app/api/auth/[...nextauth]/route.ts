@@ -9,7 +9,7 @@ type TUser = {
   name: string; email: string
 }
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: '324623809962-larrcf0n2jde283scfkdfjl7avikfdtm.apps.googleusercontent.com',
