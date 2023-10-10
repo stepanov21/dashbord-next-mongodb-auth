@@ -2,8 +2,6 @@ import Product, { TProduct } from '@/models/product/index';
 import connectToDB from "@/database/index";
 import { NextRequest, NextResponse } from "next/server"
 
-export const dynamic = 'force-dynamic'
-
 export async function POST(req: NextRequest) {
   try{
     await connectToDB()

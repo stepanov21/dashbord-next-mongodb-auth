@@ -7,10 +7,8 @@ import User from "@/models/user/index";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
-export const dynamic = "force-dynamic";
-
 export async function GET(req: NextRequest) {
-  
+
   const session = await getServerSession(authOptions)
 
   console.log("🚀 ~ file: route.ts:14 ~ GET ~ session:", session)
