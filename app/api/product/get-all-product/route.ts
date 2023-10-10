@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   try {
     await connectToDB();
 
-    const currentUser: TProduct[] | null = await  Product.findOne({});
+    const currentUser: TProduct[] | null = await Product.find({});
 
     console.log("🚀 ~ file: route.ts:19 ~ GET ~ allProducts:", currentUser);
 
