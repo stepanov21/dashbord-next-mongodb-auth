@@ -1,14 +1,11 @@
 import Product, { TProduct } from "@/models/product/index";
 import connectToDB from "@/database/index";
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../auth/[...nextauth]/route";
+
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
-  // const session = await getServerSession(authOptions)
-  // console.log("🚀 ~ file: route.ts:14 ~ GET ~ session:", session)
   
   try {
     await connectToDB();
