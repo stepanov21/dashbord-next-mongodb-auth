@@ -38,9 +38,5 @@ export default async function Home() {
     "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
     getAccumFromCategory(data, "Продукты")
   );
-  return (
-    <div>
-      <Card filter="Продукты" sum={sum} />
-    </div>
-  );
+  return <div>{/* <Card filter="Продукты" sum={sum} /> */}</div>;
 }
