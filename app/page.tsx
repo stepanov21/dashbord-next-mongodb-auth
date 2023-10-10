@@ -23,15 +23,17 @@ async function getAllMyProducts() {
   }
 }
 
+const getAccumFromCategory = (data: TProduct[], filter: string) => {
+  const category = data.filter((item) =>
+    item.category === filter ? item : null
+  );
+  return category.reduce((a, i) => a + i.price, 0);
+};
+
 export default async function Home() {
   const data = await getAllMyProducts();
 
-  const getAccumFromCategory = (data: TProduct[], filter: string) => {
-    const category = data.filter((item) =>
-      item.category === filter ? item : null
-    );
-    return category.reduce((a, i) => a + i.price, 0);
-  };
+  const sum = getAccumFromCategory(data, "Продукты");
 
   console.log(
     "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
@@ -39,7 +41,7 @@ export default async function Home() {
   );
   return (
     <div>
-      <Card filter="Продукты" sum={getAccumFromCategory(data, "Продукты")} />
+      <Card filter="Продукты" sum={sum} />
     </div>
   );
 }

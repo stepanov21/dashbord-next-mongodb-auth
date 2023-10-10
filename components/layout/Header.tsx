@@ -2,7 +2,6 @@
 
 import { Button } from "@/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { memo } from "react";
 import UserBage from "./UserBage";
 
 const Header = () => {
