@@ -1,33 +1,31 @@
-"use client";
-
 import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import { TProduct } from "@/models/product/index";
-import { useEffect } from "react";
-import { useState } from "react";
+import { headers } from "next/headers";
 
-const ProductPage = () => {
-  const [products, setProducts] = useState<TProduct[]>([]);
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    async function getAllMyProducts() {
-      try {
-        const res = await fetch(`/api/product/get-all-product`, {
-          method: "GET",
-          cache: "no-store",
-        });
-        const { data } = await res.json();
-
-        return data;
-      } catch (error) {
-        console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
+async function getAllProducts() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXTAUTH_URL}/api/product/get-all-product`,
+      {
+        method: "GET",
+        cache: "no-store",
+        headers: headers(),
       }
-    }
-    getAllMyProducts().then((res) => setProducts(res));
-  }, []);
+    );
+    const { data } = await res.json();
 
+    return data;
+  } catch (error) {
+    console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
+  }
+}
+
+export default async function ProductPage() {
+  const products: TProduct[] = await getAllProducts();
   console.log(products);
-
   return (
     <div className="">
       <FormAddProduct />
@@ -37,6 +35,4 @@ const ProductPage = () => {
         })}
     </div>
   );
-};
-
-export default ProductPage;
+}

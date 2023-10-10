@@ -1,29 +1,29 @@
-"use client";
-
-import Charts from "@/components/Charts/Charts";
-import { TProduct } from "@/models/product/index";
 import { selectOption } from "@/components/FormControls/selectOption";
-import { useEffect, useState } from "react";
+import { headers } from "next/headers";
+import { TProduct } from "@/models/product/index";
 
-const Home = () => {
-  const [data, setData] = useState<TProduct[]>([]);
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    async function getAllMyProducts() {
-      try {
-        const res = await fetch(`/api/product/get-all-product`, {
-          method: "GET",
-          cache: "no-store",
-        });
-        const { data } = await res.json();
-
-        return data;
-      } catch (error) {
-        console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
+async function getAllMyProducts() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXTAUTH_URL}/api/product/get-all-product`,
+      {
+        method: "GET",
+        cache: "no-store",
+        headers: headers(),
       }
-    }
-    getAllMyProducts().then((res) => setData(res));
-  }, []);
+    );
+    const { data } = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
+  }
+}
+
+export default async function Home() {
+  const data = await getAllMyProducts();
 
   const getAccumFromCategory = (data: TProduct[], filter: string) => {
     const category = data.filter((item) =>
@@ -40,7 +40,7 @@ const Home = () => {
   const state = {
     options: {
       chart: {
-        id: "bar",
+        id: "basic-bar",
       },
       xaxis: {
         categories: [...selectOption],
@@ -55,11 +55,5 @@ const Home = () => {
       },
     ],
   };
-  return (
-    <div>
-      <Charts {...state} />
-    </div>
-  );
-};
-
-export default Home;
+  return <div></div>;
+}
