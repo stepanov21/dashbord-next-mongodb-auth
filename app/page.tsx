@@ -55,7 +55,11 @@ const Home = () => {
       },
     ],
   };
-  return <Charts {...state} />;
+  return (
+    <div>
+      <Charts {...state} />
+    </div>
+  );
 };
 
 export default Home;

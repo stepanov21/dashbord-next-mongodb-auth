@@ -1,5 +1,3 @@
-"use client";
-
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Aside from "@/components/layout/Aside";

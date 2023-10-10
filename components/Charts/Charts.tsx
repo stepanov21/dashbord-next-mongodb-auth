@@ -1,11 +1,27 @@
 "use client";
+import { useEffect, useState } from "react";
 
-import Chart from "react-apexcharts";
+export default function ApexChart(data: any) {
+  const [Chart, setChart] = useState<any>();
+  const hasType = typeof data?.type !== "undefined";
 
-const Charts = (data: any) => {
+  useEffect(() => {
+    import("react-apexcharts").then((mod) => {
+      setChart(() => mod.default);
+    });
+  }, []);
+
   return (
-    <Chart options={data.options} series={data.series} type="bar" width="500" />
+    hasType &&
+    Chart && (
+      <Chart
+        options={data.options}
+        series={data.series}
+        type="bar"
+        width="500"
+      />
+    )
   );
-};
+}
 
-export default Charts;
+// <Chart options={data.options} series={data.series} type="bar" width="500" />
