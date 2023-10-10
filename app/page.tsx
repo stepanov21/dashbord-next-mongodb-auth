@@ -37,25 +37,6 @@ export default async function Home() {
     "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
     getAccumFromCategory(data, "Продукты")
   );
-
-  const state = {
-    options: {
-      chart: {
-        id: "basic-bar",
-      },
-      xaxis: {
-        categories: [...selectOption],
-      },
-    },
-    series: [
-      {
-        name: "series-1",
-        data: selectOption.map((item, i) =>
-          getAccumFromCategory(data, selectOption[i])
-        ),
-      },
-    ],
-  };
   return (
     <div>
       <Card filter="Продукты" sum={getAccumFromCategory(data, "Продукты")} />
