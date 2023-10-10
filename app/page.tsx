@@ -11,13 +11,10 @@ const Home = () => {
   useEffect(() => {
     async function getAllMyProducts() {
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/product/get-all-product`,
-          {
-            method: "GET",
-            cache: "no-store",
-          }
-        );
+        const res = await fetch(`/api/product/get-all-product`, {
+          method: "GET",
+          cache: "no-store",
+        });
         const { data } = await res.json();
 
         return data;
