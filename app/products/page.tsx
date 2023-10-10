@@ -5,14 +5,10 @@ import { headers } from "next/headers";
 
 async function getAllProducts() {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/product/get-all-product`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: headers(),
-      }
-    );
+    const res = await fetch(`/api/product/get-all-product`, {
+      method: "GET",
+      cache: "no-store",
+    });
     const { data } = await res.json();
 
     return data;
