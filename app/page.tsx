@@ -1,6 +1,7 @@
 import { selectOption } from "@/components/FormControls/selectOption";
 import { headers } from "next/headers";
 import { TProduct } from "@/models/product/index";
+import Card from "@/components/Card/Card";
 
 export const dynamic = "force-dynamic";
 
@@ -55,5 +56,9 @@ export default async function Home() {
       },
     ],
   };
-  return <div></div>;
+  return (
+    <div>
+      <Card filter="Продукты" sum={getAccumFromCategory(data, "Продукты")} />
+    </div>
+  );
 }
