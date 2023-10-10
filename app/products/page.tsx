@@ -7,14 +7,11 @@ export const dynamic = "force-dynamic";
 
 async function getAllProducts() {
   try {
-    const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/product/get-all-product`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: headers(),
-      }
-    );
+    const res = await fetch(`/api/product/get-all-product`, {
+      method: "GET",
+      cache: "no-store",
+      headers: headers(),
+    });
     const { data } = await res.json();
 
     return data;

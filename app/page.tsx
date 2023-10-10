@@ -6,14 +6,11 @@ export const dynamic = "force-dynamic";
 
 async function getAllMyProducts() {
   try {
-    const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/product/get-all-product`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: headers(),
-      }
-    );
+    const res = await fetch(`/api/product/get-all-product`, {
+      method: "GET",
+      cache: "no-store",
+      headers: headers(),
+    });
     const { data } = await res.json();
 
     return data;
@@ -22,17 +19,17 @@ async function getAllMyProducts() {
   }
 }
 
-async function getAccumFromCategory(data: TProduct[], filter: string) {
-  const category = data.filter((item) =>
-    item.category === filter ? item : null
-  );
-  return category.reduce((a, i) => a + i.price, 0);
-}
-
 export default async function Home() {
   const data = await getAllMyProducts();
 
-  const sum = await getAccumFromCategory(data, "Продукты");
+  function getAccumFromCategory(data: TProduct[], filter: string) {
+    const category = data.filter((item) =>
+      item.category === filter ? item : null
+    );
+    return category.reduce((a, i) => a + i.price, 0);
+  }
+
+  const sum = getAccumFromCategory(data, "Продукты");
 
   console.log(
     "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
