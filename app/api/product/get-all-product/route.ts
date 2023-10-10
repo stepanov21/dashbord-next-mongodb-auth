@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   
-  const session = await getServerSession(authOptions)
+  // const session = await getServerSession(authOptions)
 
   console.log("🚀 ~ file: route.ts:14 ~ GET ~ session:", session)
   
@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     await connectToDB();
 
     const currentUser: TProduct[] = await Product.find({
-      email: session?.user?.email
+      email: 'stepanovigor2110@gmail.com'
     });
 
     console.log("🚀 ~ file: route.ts:19 ~ GET ~ allProducts:", currentUser);
