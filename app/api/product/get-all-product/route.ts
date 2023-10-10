@@ -1,24 +1,19 @@
-import endOfDay from "date-fns/endOfDay";
-import startOfDay from "date-fns/startOfDay";
 import Product, { TProduct } from "@/models/product/index";
 import connectToDB from "@/database/index";
-import { NextRequest, NextResponse, userAgent } from "next/server";
-import User from "@/models/user/index";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions)
-  console.log("🚀 ~ file: route.ts:14 ~ GET ~ session:", session)
+  // const session = await getServerSession(authOptions)
+  // console.log("🚀 ~ file: route.ts:14 ~ GET ~ session:", session)
   
   try {
     await connectToDB();
 
-    const currentUser: TProduct[] | null = await  Product.findOne({
-      email: session?.user?.email || 'stepanovigor2110@gmail.com'
-    });
+    const currentUser: TProduct[] | null = await  Product.findOne({});
 
     console.log("🚀 ~ file: route.ts:19 ~ GET ~ allProducts:", currentUser);
 
