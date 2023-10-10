@@ -1,29 +1,33 @@
+"use client";
+
 import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import { TProduct } from "@/models/product/index";
-import { headers } from "next/headers";
+import { useEffect } from "react";
+import { useState } from "react";
 
-async function getAllProducts() {
-  try {
-    const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/product/get-all-product`,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: headers(),
+const ProductPage = () => {
+  const [products, setProducts] = useState<TProduct[]>([]);
+
+  useEffect(() => {
+    async function getAllMyProducts() {
+      try {
+        const res = await fetch(`/api/product/get-all-product`, {
+          method: "GET",
+          cache: "no-store",
+        });
+        const { data } = await res.json();
+
+        return data;
+      } catch (error) {
+        console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
       }
-    );
-    const { data } = await res.json();
+    }
+    getAllMyProducts().then((res) => setProducts(res));
+  }, []);
 
-    return data;
-  } catch (error) {
-    console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
-  }
-}
-
-export default async function ProductPage() {
-  const products: TProduct[] = await getAllProducts();
   console.log(products);
+
   return (
     <div className="">
       <FormAddProduct />
@@ -33,4 +37,6 @@ export default async function ProductPage() {
         })}
     </div>
   );
-}
+};
+
+export default ProductPage;
