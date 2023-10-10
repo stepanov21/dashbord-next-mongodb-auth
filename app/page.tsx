@@ -1,4 +1,3 @@
-import { selectOption } from "@/components/FormControls/selectOption";
 import { headers } from "next/headers";
 import { TProduct } from "@/models/product/index";
 import Card from "@/components/Card/Card";
@@ -23,17 +22,17 @@ async function getAllMyProducts() {
   }
 }
 
-const getAccumFromCategory = (data: TProduct[], filter: string) => {
+async function getAccumFromCategory(data: TProduct[], filter: string) {
   const category = data.filter((item) =>
     item.category === filter ? item : null
   );
   return category.reduce((a, i) => a + i.price, 0);
-};
+}
 
 export default async function Home() {
   const data = await getAllMyProducts();
 
-  const sum = getAccumFromCategory(data, "Продукты");
+  const sum = await getAccumFromCategory(data, "Продукты");
 
   console.log(
     "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
