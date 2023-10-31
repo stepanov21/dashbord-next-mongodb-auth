@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Aside from "@/components/layout/Aside";
 import NextAuthProvider from "@/auth-provider/index";
+import QueryProvider from "@/provider/QueryProvider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex bg-ourBlack">
         <NextAuthProvider>
-          <Aside />
-          <div className="flex flex-1 flex-col ml-[calc(25vw+24px)] mr-6 my-6 sm:m-4">
-            <Header />
-            <main>{children}</main>
-          </div>
+          <QueryProvider>
+            <Aside />
+            <div className="flex flex-1 flex-col ml-[calc(25vw+24px)] mr-6 my-6 sm:m-4">
+              <Header />
+              <main className="mb-[70px]">{children}</main>
+            </div>
+          </QueryProvider>
         </NextAuthProvider>
       </body>
     </html>

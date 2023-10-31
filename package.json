@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "chart.js": "^4.4.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
@@ -17,8 +18,10 @@
     "next-auth": "^4.23.2",
     "react": "latest",
     "react-apexcharts": "^1.4.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "latest",
     "react-icons": "^4.11.0",
+    "react-query": "^3.39.3",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {

@@ -2,37 +2,39 @@
 
 import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 import ProductItem from "@/components/ProductItem/ProductItem";
-import { TProduct } from "@/models/product/index";
-import { headers } from "next/headers";
-import { useEffect, useState } from "react";
+import { queryClient } from "@/provider/QueryProvider";
+import {
+  DELETE_PRODUCT_BY_ID,
+  GET_ALL_PRODUCTS,
+} from "@/react-query/product/product";
+import { useQuery, useMutation } from "react-query";
 
 const ProductPage = () => {
-  const [data, setData] = useState<TProduct[]>([]);
-
-  useEffect(() => {
-    async function getAllMyProducts() {
-      try {
-        const res = await fetch(`/api/product/get-all-product`, {
-          method: "GET",
-          cache: "no-store",
-        });
-        const { data } = await res.json();
-        console.log("🚀 ~ file: page.tsx:20 ~ getAllMyProducts ~ data:", data);
-
-        return data;
-      } catch (error) {
-        console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
-      }
+  const { isLoading, error, data, refetch } = useQuery(
+    "repoData",
+    GET_ALL_PRODUCTS,
+    {
+      onSuccess: () => console.log("Продукты финиш !"),
     }
-    getAllMyProducts().then((res) => setData(res));
-  }, []);
+  );
+
+  const deleteProductById = useMutation(DELETE_PRODUCT_BY_ID, {
+    onSuccess: () => queryClient.refetchQueries(["repoData"]),
+  });
 
   return (
     <div className="">
       <FormAddProduct />
-      {data.length &&
-        data?.map((product, key) => {
-          return <ProductItem key={key} {...product} _id={product._id} />;
+      {data &&
+        data?.data.map((product, key) => {
+          return (
+            <ProductItem
+              key={key}
+              {...product}
+              _id={product._id}
+              deleteProductById={deleteProductById.mutate}
+            />
+          );
         })}
     </div>
   );

@@ -1,41 +1,52 @@
 "use client";
 
-import { TProduct } from "@/models/product/index";
+import Card from "@/components/Card/Card";
+import { LineChart } from "@/components/Charts/LineChart";
+import PieChart from "@/components/Charts/PieChart";
 import { selectOption } from "@/components/FormControls/selectOption";
-import { useEffect, useState } from "react";
+import { TProduct } from "@/models/product/index";
+import { GET_ALL_PRODUCTS } from "@/react-query/product/product";
+import { getNumbersByMonth } from "@/utils/getNumbersByMonth";
+import { useQuery } from "react-query";
 
 const Home = () => {
-  const [data, setData] = useState<TProduct[]>([]);
+  const { isLoading, error, data } = useQuery("repoData", GET_ALL_PRODUCTS);
 
-  useEffect(() => {
-    async function getAllMyProducts() {
-      try {
-        const res = await fetch(`/api/product/get-all-product`, {
-          method: "GET",
-          cache: "no-store",
-        });
-        const { data } = await res.json();
+  console.log(data?.data);
 
-        return data;
-      } catch (error) {
-        console.log("🚀 ~ file: page.tsx:18 ~ getAllProducts ~ error:", error);
-      }
+  getNumbersByMonth();
+
+  const getAccumFromCategory = (
+    data: TProduct[],
+    filter: string | null = null
+  ) => {
+    if (filter) {
+      const category = data.filter((item) =>
+        item.category === filter ? item : null
+      );
+      return category.reduce((a, i) => a + i.price, 0);
     }
-    getAllMyProducts().then((res) => setData(res));
-    console.log(
-      "🚀 ~ file: page.tsx:28 ~ getAccumFromCategory ~ getAccumFromCategory:",
-      getAccumFromCategory(data, "Продукты")
-    );
-  }, []);
-
-  const getAccumFromCategory = (data: TProduct[], filter: string) => {
-    const category = data.filter((item) =>
-      item.category === filter ? item : null
-    );
-    return category.reduce((a, i) => a + i.price, 0);
+    return data.reduce((a, i) => a + i.price, 0);
   };
 
-  return <div></div>;
+  if (isLoading) return null;
+
+  return (
+    <>
+      {/* <div className="grid grid-cols-4 gap-6">
+        {!isLoading &&
+          selectOption.map((option) => (
+            <Card
+              filter={option}
+              sum={getAccumFromCategory(data?.data, option)}
+            />
+          ))}
+      </div> */}
+      <Card filter="Итого" sum={getAccumFromCategory(data?.data)} />
+      <PieChart />
+      <LineChart />
+    </>
+  );
 };
 
 export default Home;

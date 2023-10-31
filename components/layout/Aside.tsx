@@ -26,7 +26,9 @@ const Aside = () => {
   const pathname = usePathname();
   return (
     <div className="h-screen bg-gray p-10 fixed w-[25vw] sm:h-auto bottom-0 sm:w-full sm:p-4">
-      <h2 className="text-3xl mb-10 sm:hidden">Logo</h2>
+      <h2 className="text-4xl mb-10 sm:hidden">
+        | Save<span className="text-green">Money |</span>
+      </h2>
       <nav>
         <h4 className="opacity-40 mb-4 sm:hidden">Menu</h4>
         <ul className="flex flex-col gap-4 sm:flex-row sm:overflow-auto">

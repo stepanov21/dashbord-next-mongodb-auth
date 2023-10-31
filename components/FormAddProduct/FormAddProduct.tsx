@@ -4,11 +4,14 @@ import { TProduct } from "@/models/product/index";
 import { Button } from "@/ui/Button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { EventHandler, MouseEventHandler, useState } from "react";
+import { EventHandler, FormEvent, MouseEventHandler, useState } from "react";
 import Input from "../FormControls/Input";
 import Select from "../FormControls/Select";
 import FormHeader from "./FormHeader";
 import { inputsData } from "./inputsData";
+import { useMutation } from "react-query";
+import { queryClient } from "@/provider/QueryProvider";
+import { ADD_PRODUCT } from "@/react-query/product/product";
 
 export default function FormAddProduct() {
   const { data: userData } = useSession();
@@ -20,29 +23,15 @@ export default function FormAddProduct() {
     category: "",
     email: "",
   });
-  const router = useRouter();
 
-  const addNewProduct = async () => {
-    console.log("Добавить");
-    try {
-      const res = await fetch(`/api/product/add-product`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, email: userData?.user?.email! }),
-      });
+  const addProduct = useMutation(ADD_PRODUCT, {
+    onSuccess: () => queryClient.refetchQueries(["repoData"]),
+  });
 
-      const data = await res.json();
-      console.log(
-        "🚀 ~ file: FormAddProduct.tsx:24 ~ addNewProduct ~ data:",
-        data
-      );
-      setIsOpenModal(false);
-      router.refresh();
-    } catch (err) {
-      console.log(err);
-    }
+  const addNewProduct = async (e: FormEvent) => {
+    e.preventDefault();
+    addProduct.mutate({ formData, email: userData?.user?.email });
+    setIsOpenModal(false);
   };
 
   const closeModalOutside = (e: { target: HTMLFormElement }) => {
@@ -59,7 +48,7 @@ export default function FormAddProduct() {
         <form
           data-close="true"
           onClick={(e) => closeModalOutside(e as any)}
-          onSubmit={() => addNewProduct()}
+          onSubmit={(e) => addNewProduct(e)}
           className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
           <div className="bg-gray w-full max-w-[350px] rounded-2xl px-4 py-6 flex flex-col gap-4">
             {inputsData &&
