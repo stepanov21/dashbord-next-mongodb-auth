@@ -4,7 +4,13 @@ import { TProduct } from "@/models/product/index";
 import { Button } from "@/ui/Button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { EventHandler, FormEvent, MouseEventHandler, useState } from "react";
+import {
+  EventHandler,
+  FormEvent,
+  memo,
+  MouseEventHandler,
+  useState,
+} from "react";
 import Input from "../FormControls/Input";
 import Select from "../FormControls/Select";
 import FormHeader from "./FormHeader";
@@ -13,13 +19,13 @@ import { useMutation } from "react-query";
 import { queryClient } from "@/provider/QueryProvider";
 import { ADD_PRODUCT } from "@/react-query/product/product";
 
-export default function FormAddProduct() {
+const FormAddProduct = () => {
   const { data: userData } = useSession();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [formData, setFormData] = useState<TProduct>({
     productName: "",
-    count: 0,
-    price: 0,
+    count: 1,
+    price: null,
     category: "",
     email: "",
   });
@@ -42,15 +48,22 @@ export default function FormAddProduct() {
 
   return (
     <>
-      <Button onClick={() => setIsOpenModal(true)}>Add new product</Button>
+      <div className="flex justify-between items-center">
+        <h2>My spending today:</h2>
+        <Button
+          className="bg-yellow px-[30px]"
+          onClick={() => setIsOpenModal(true)}>
+          Add new
+        </Button>
+      </div>
       <FormHeader />
       {isOpenModal && (
         <form
           data-close="true"
           onClick={(e) => closeModalOutside(e as any)}
           onSubmit={(e) => addNewProduct(e)}
-          className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
-          <div className="bg-gray w-full max-w-[350px] rounded-2xl px-4 py-6 flex flex-col gap-4">
+          className="absolute inset-0 bg-[black] bg-opacity-50 flex items-center justify-center p-3 z-10">
+          <div className="bg-milk w-full max-w-[350px] rounded-2xl px-4 py-4 flex flex-col gap-3 btn-shadow">
             {inputsData &&
               inputsData.length &&
               inputsData.map((input, key) => {
@@ -85,4 +98,6 @@ export default function FormAddProduct() {
       )}
     </>
   );
-}
+};
+
+export default memo(FormAddProduct);

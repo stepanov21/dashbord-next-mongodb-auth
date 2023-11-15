@@ -9,7 +9,5 @@ export const getNumbersByMonth = () => {
     numberOfMonth.push(i)
   }
 
-  console.log(numberOfMonth)
-
   return numberOfMonth;
 }

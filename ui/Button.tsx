@@ -2,13 +2,16 @@ import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, FC } from "react";
 
-const buttonVariants = cva("px-6 py-3 ml-auto bg-green rounded-xl", {
-  variants: {
-    size: {
-      lg: "py-6 px-10",
+const buttonVariants = cva(
+  "uppercase py-3 font-bold px-6 bg-blue rounded-main btn-shadow",
+  {
+    variants: {
+      size: {
+        lg: "py-6 px-10",
+      },
     },
-  },
-});
+  }
+);
 
 interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

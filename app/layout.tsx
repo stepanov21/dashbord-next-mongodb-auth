@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex bg-ourBlack">
+      <body className="flex bg-black ">
         <NextAuthProvider>
           <QueryProvider>
             <Aside />

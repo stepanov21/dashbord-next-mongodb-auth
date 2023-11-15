@@ -8,7 +8,7 @@ const Header = () => {
   const { status, data } = useSession();
 
   return (
-    <div className="bg-gray p-4 flex rounded-2xl w-full mb-4">
+    <div className="bg-gray flex rounded-2xl w-full mb-5 items-center">
       {status === "authenticated" ? (
         <UserBage
           avatar={data?.user?.image!}
@@ -18,9 +18,13 @@ const Header = () => {
       ) : null}
 
       {status === "unauthenticated" ? (
-        <Button onClick={() => signIn()}>Sign In</Button>
+        <Button className="ml-auto" onClick={() => signIn()}>
+          Sign In
+        </Button>
       ) : (
-        <Button onClick={() => signOut()}>Sign Out</Button>
+        <Button className="ml-auto" onClick={() => signOut()}>
+          Sign Out
+        </Button>
       )}
     </div>
   );

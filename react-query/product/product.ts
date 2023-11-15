@@ -1,5 +1,5 @@
-export const GET_ALL_PRODUCTS = () =>
-fetch("/api/product/get-all-product", {
+export const GET_ALL_PRODUCTS = (weekAgo = 0) =>
+fetch(`/api/product/get-all-product/${weekAgo}`, {
   method: "GET",
   cache: "no-store",
 }).then((response) => response.json())

@@ -6,19 +6,19 @@ const Select: FC<SelectHTMLAttributes<HTMLSelectElement>> = ({ ...props }) => {
     <div className="w-full">
       <label
         htmlFor="category"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white w-full">
+        className="block mb-1 text-sm font-medium text-gray-900 dark:text-white w-full">
         Category
       </label>
       <select
         {...props}
         id="category"
         name="category"
-        className="border block border-green bg-black p-3 rounded-md w-full">
+        className="border block border-[black] bg-milk p-3 rounded-md w-full focus:outline-none">
         <option value="TV">Select Category</option>
         {selectOption.map((option, key) => {
           return (
-            <option key={key} value={option}>
-              {option}
+            <option key={key} value={option.name}>
+              {option.name}
             </option>
           );
         })}

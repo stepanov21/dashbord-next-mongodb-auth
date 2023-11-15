@@ -1,7 +1,14 @@
-import { ProductSchema } from './../product/index';
+import { Schema, model, models, Model } from "mongoose";
+
 const  {default: mongoose} = require('mongoose')
 
-const userSchema = new mongoose.Schema(
+interface IUser {
+  email: string;
+  name: string;
+  image: string;
+}
+
+const userSchema = new Schema<IUser>(
   {
     email: {
       type: String,
@@ -11,12 +18,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    products: []
+    image: {
+      type: String,
+      required: true
+    }
   }, {
     timestamps: true
   }
 );
 
-const User = mongoose.models.Users || mongoose.model('Users', userSchema)
-
+const User: Model<IUser>= models.Users || model<IUser>('Users', userSchema)
 export default User;

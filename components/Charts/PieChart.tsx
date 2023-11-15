@@ -2,6 +2,8 @@
 
 import { TProduct } from "@/models/product";
 import { GET_ALL_PRODUCTS } from "@/react-query/product/product";
+import { cn } from "@/utils/cn";
+import { getAccumFromCategory } from "@/utils/getAccumFromCategory";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -9,78 +11,87 @@ import {
   Legend,
   ChartData,
   ChartOptions,
-  CoreChartOptions,
-  ElementChartOptions,
-  PluginChartOptions,
-  DatasetChartOptions,
-  ScaleChartOptions,
-  CommonElementOptions,
 } from "chart.js";
 import { _DeepPartialObject } from "chart.js/dist/types/utils";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Pie } from "react-chartjs-2";
 import { useQuery } from "react-query";
 import { selectOption } from "../FormControls/selectOption";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
-  const { isLoading, error, data } = useQuery("repoData", GET_ALL_PRODUCTS);
+const PieChart = ({ isLoading, data }) => {
+  const [category, setCategory] = useState([]);
 
-  if (!isLoading) {
-    const getAccumFromCategory = (data: TProduct[], filter: string) => {
-      const category = data.filter((item) =>
-        item.category === filter ? item : null
-      );
-      return category.reduce((a, i) => a + i.price, 0);
-    };
+  useEffect(() => {
+    if (isLoading) return;
+    setCategory(
+      selectOption
+        .map((item) => getAccumFromCategory(data.data, item))
+        .filter((item) => item.sum !== 0)
+    );
+  }, [isLoading, data]);
 
-    const dataForChart: ChartData<"pie"> = {
-      labels: selectOption,
-      datasets: [
-        {
-          label: "# of Votes",
-          data: selectOption.map((item) =>
-            getAccumFromCategory(data.data, item)
-          ),
-          backgroundColor: [
-            "#0DA871",
-            "#EEEBD3",
-            "#A98743",
-            "#F7C548",
-            "#1B512D",
-            "#985277",
-            "#C14953",
-          ],
-          borderWidth: 0,
-        },
-      ],
-    };
+  if (isLoading) null;
 
-    const options: ChartOptions<"pie"> = {
-      plugins: {
-        legend: {
-          display: true,
-          position: "bottom",
-          labels: {
-            usePointStyle: true,
-            pointStyle: "circle",
-            padding: 20,
-            color: "rgb(255, 255, 255)",
-          },
-        },
-        tooltip: {
-          enabled: true,
-        },
+  const dataForChart: ChartData<"pie"> = {
+    labels: ["undefined"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: category.map((item) => item.sum),
+        backgroundColor: category.map((item) => item.color),
+        borderWidth: 1,
+        borderColor: "#000000",
       },
-    };
+    ],
+  };
 
-    return (
-      <div className="my-0 mx-auto mt-4 w-full">
+  console.log(category.filter((item) => (item.sum !== 0 ? item.color : null)));
+
+  const options: ChartOptions<"pie"> = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+  };
+
+  return (
+    <div className="grid grid-cols-[140px_1fr] mt-4 items-center">
+      <ul className="flex flex-col gap-2">
+        {category.map((item, key) => {
+          return (
+            <li
+              className="flex gap-2 items-center p-2 border border-[#000] rounded-main "
+              key={key}>
+              <span
+                className={cn(
+                  `min-h-[10px] min-w-[10px] inline-block rounded-full border border-[#000]
+                `,
+                  `bg-[${item.color}]`
+                )}></span>
+              {item.name}
+            </li>
+          );
+        })}
+      </ul>
+      <div className="my-0 ml-auto mt-4 w-[50vw] self-center">
         <Pie data={dataForChart} options={options}>
           PieChart
         </Pie>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default PieChart;

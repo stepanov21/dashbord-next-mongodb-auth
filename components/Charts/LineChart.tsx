@@ -9,6 +9,8 @@ import {
   Tooltip,
   Filler,
   Legend,
+  ChartData,
+  ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { getNumbersByMonth } from "@/utils/getNumbersByMonth";
@@ -27,39 +29,33 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
+export const options: ChartOptions<"line"> = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
+      display: false,
     },
   },
 };
 
 const labels = getNumbersByMonth();
 
-console.log(getDate(parseISO("2023-10-31T09:46:49.725Z")));
-
 export function LineChart() {
   const {
     isLoading,
     error,
     data: dataProducts,
-  } = useQuery("repoData", GET_ALL_PRODUCTS);
+  } = useQuery("dataForMonth", () => GET_ALL_PRODUCTS());
 
   if (isLoading) return null;
+
+  console.log(dataProducts);
 
   const filterByDay = (data, day) => {
     return data.filter((item) =>
       getDate(parseISO(item.createdAt)) === day ? item : null
     );
   };
-
-  filterByDay(dataProducts.data, 31);
 
   const dataProductsByMonthDay = () => {
     return labels.map((day) => {
@@ -70,20 +66,15 @@ export function LineChart() {
     });
   };
 
-  console.log(
-    "🚀 ~ file: LineChart.tsx:75 ~ LineChart ~ dataProductsByMonthDay:",
-    dataProductsByMonthDay()
-  );
-
-  const data = {
+  const data: ChartData<"line"> = {
     labels,
     datasets: [
       {
         fill: true,
-        label: "Dataset 2",
+        label: "",
         data: dataProductsByMonthDay(),
-        borderColor: "#0DA871",
-        backgroundColor: "rgba(13, 168, 113, 0.5)",
+        borderColor: "rgba(124, 189, 199, 0.5)",
+        backgroundColor: "rgba(31, 123, 137, 0.5)",
       },
     ],
   };

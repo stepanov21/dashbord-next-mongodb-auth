@@ -3,22 +3,22 @@ import User from "@/models/user/index";
 import { NextRequest, NextResponse } from "next/server"
 
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try{
     await connectToDB()
-    const {name, email} = await req.json()
 
-    const newUser = await User.create({name, email})
+    const newUser = await User.find({})
 
     if(newUser) {
       return NextResponse.json({
         success: true,
-        message: "Пользователь зарегистрирован"
+        message: "Пользователи найдены",
+        data: newUser
       })
     } else {
       return NextResponse.json({
         success: false,
-        message: "Ошибка регистрации"
+        message: "Ошибка, пользователей нима"
       })
     }
   } catch (e) {

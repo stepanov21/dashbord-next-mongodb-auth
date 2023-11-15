@@ -3,11 +3,7 @@ import connectToDB from '@/database/index';
 import GoogleProvider from "next-auth/providers/google"
 import NextAuth from 'next-auth/next';
 import {NextAuthOptions} from 'next-auth';
-import { AdapterUser } from 'next-auth/adapters';
 
-type TUser = {
-  name: string; email: string
-}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -18,20 +14,20 @@ export const authOptions: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({user, account}): Promise<typeof User | AdapterUser> {
+    async signIn({user, account} : any) {
       if(account?.provider === 'google') {
-        const {name, email} = user
+        const {name, email, image} = user
         try {
           await connectToDB();
           const isUserExists: boolean | null = await User.findOne({email})
 
           if(!isUserExists) {
-            const res: Response = await fetch(`/api/user`, {
+            const res: Response = await fetch(`${process.env.NEXTAUTH_URL}/api/user/add-user`, {
               method: 'POST', 
               headers: {
                 "Content-Type": 'application/json'
               },
-              body: JSON.stringify({name, email})
+              body: JSON.stringify({name, email, image})
             })
             if (res) {
               return user
