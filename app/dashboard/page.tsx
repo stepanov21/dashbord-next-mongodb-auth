@@ -5,7 +5,7 @@ import { GET_ALL_USERS } from "@/react-query/user/user";
 import React, { useEffect, useRef } from "react";
 import { useQuery } from "react-query";
 
-const page = () => {
+const DashboardPage = () => {
   const { isLoading, error, data, refetch } = useQuery(
     ["repoData"],
     GET_ALL_USERS
@@ -52,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default DashboardPage;
