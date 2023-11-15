@@ -36,8 +36,9 @@ const DashboardPage = () => {
           className={`h-[13px] w-[13px] border border-[black] rounded-full bg-green absolute translate-y-[50%] bottom-[50%]`}></div>
       </div>
       {data.data ? (
-        data.data.map((item) => (
+        data.data.map((item, key) => (
           <UserBage
+            key={key}
             className="border border-[black] rounded-main p-2 mb-2"
             avatar={item.image}
             username={item.name}
