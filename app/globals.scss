@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("../font/font.css");
+
+body {
+  color: black;
+  background-color: #f5e8df;
+  font-family: "Mabry Pro";
+  font-size: 14px;
+  line-height: 1;
+}
+
+:root {
+	--primary-color: #F1D304;
+	--secondary-color: #e6eef9;
+}
+
+h2 {
+  font-size: 18px;
+}
+.btn-shadow {
+  border: 1px solid black;
+  box-shadow: 1px 2px 0px 0px black;
+}
+
+.tabs {
+  display: flex;
+	position: relative;
+	background-color: #F5E8DF;
+  padding: 12px;
+	border-radius: 5px; // just a high number to create pill effect
+	* {
+		z-index: 2;
+	}
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+.tab {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 40px;
+	width: 150px;
+	font-size: 1rem;
+	font-weight: 500;
+	border-radius: 15px; // just a high number to create pill effect
+	cursor: pointer;
+	transition: color 0.15s ease-in;
+}
+
+input[type="radio"] {
+	&:checked {
+		& + label {
+			color: black;
+			& > .notification {
+				background-color: #7CBDC7;
+				color: #fff;
+			}
+		}
+	}
+}
+
+input[id="radio-1"] {
+	&:checked {
+		& ~ .glider {
+			transform: translateX(0);
+		}
+	}
+}
+
+input[id="radio-2"] {
+	&:checked {
+		& ~ .glider {
+			transform: translateX(100%);
+		}
+	}
+}
+
+.glider {
+	position: absolute;
+	display: flex;
+	height: 40px;
+	width: 150px;
+	background-color: #7CBDC7;
+	z-index: 1;
+	border-radius: 5px; // just a high number to create pill effect
+	transition: 0.25s ease-out;
+  border: 1px solid black;
+}
+
+
+
+

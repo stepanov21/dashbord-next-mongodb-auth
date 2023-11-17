@@ -38,6 +38,11 @@ export const authOptions: NextAuthOptions = {
         }
       }
       return user;
+    },
+    async redirect({url, baseUrl}) {
+      console.log('baseUrl', baseUrl);
+      
+      return baseUrl + '/dashboard';
     }
   }
 }

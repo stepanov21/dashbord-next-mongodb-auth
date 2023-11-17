@@ -31,7 +31,7 @@ const FormAddProduct = () => {
   });
 
   const addProduct = useMutation(ADD_PRODUCT, {
-    onSuccess: () => queryClient.refetchQueries(["repoData"]),
+    onSuccess: () => queryClient.refetchQueries(["dataByDay"]),
   });
 
   const addNewProduct = async (e: FormEvent) => {

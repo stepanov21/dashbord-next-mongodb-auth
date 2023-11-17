@@ -1,22 +1,23 @@
 "use client";
 
-import Card from "@/components/Card/Card";
+
 import { LineChart } from "@/components/Charts/LineChart";
 import PieChart from "@/components/Charts/PieChart";
 import { TProduct } from "@/models/product/index";
-import { GET_ALL_PRODUCTS } from "@/react-query/product/product";
+import {
+  GET_PRODUCTS_BY_WEEK,
+} from "@/react-query/product/product";
 import { Button } from "@/ui/Button";
-import { getNumbersByMonth } from "@/utils/getNumbersByMonth";
 import { useQuery } from "react-query";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { useCallback, useEffect, useState } from "react";
-import { selectOption } from "@/components/FormControls/selectOption";
+
 
 const Home = () => {
   const [weekAgo, setWeekAgo] = useState(0);
 
   const { isLoading, error, data, refetch } = useQuery(["repoData"], () =>
-    GET_ALL_PRODUCTS(weekAgo)
+    GET_PRODUCTS_BY_WEEK(weekAgo)
   );
 
   useEffect(() => {

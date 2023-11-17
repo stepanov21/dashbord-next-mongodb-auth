@@ -1,8 +1,12 @@
-import "./globals.css";
+"use client";
+
+import "./globals.scss";
 import Header from "@/components/layout/Header";
 import Aside from "@/components/layout/Aside";
 import NextAuthProvider from "@/auth-provider/index";
 import QueryProvider from "@/provider/QueryProvider";
+import { usePathname } from "next/navigation";
+import Head from "next/head";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +20,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
-      <body className="flex bg-black ">
+      <body className="flex bg-black min-h-screen">
         <NextAuthProvider>
           <QueryProvider>
-            <Aside />
-            <div className="flex flex-1 flex-col ml-[calc(25vw+24px)] mr-6 my-6 sm:m-4">
-              <Header />
+            {pathname !== "/auth" && <Aside />}
+            <div className="flex flex-1 flex-col ml-[calc(25vw+24px)] mr-6 my-6 sm:m-4 sm:mr-4 sm:w-screen">
+              {pathname !== "/auth" && <Header />}
               <main className="mb-[70px]">{children}</main>
             </div>
           </QueryProvider>

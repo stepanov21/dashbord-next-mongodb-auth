@@ -6,7 +6,7 @@ import ProductItem from "@/components/ProductItem/ProductItem";
 import { queryClient } from "@/provider/QueryProvider";
 import {
   DELETE_PRODUCT_BY_ID,
-  GET_ALL_PRODUCTS,
+  GET_PRODUCTS_BY_DAY,
 } from "@/react-query/product/product";
 import { useState } from "react";
 import { useQuery, useMutation } from "react-query";
@@ -14,15 +14,15 @@ import { useQuery, useMutation } from "react-query";
 const ProductPage = () => {
   const [searchValue, setSearchValue] = useState("");
   const { isLoading, error, data, refetch } = useQuery(
-    "repoData",
-    () => GET_ALL_PRODUCTS(),
+    "dataByDay",
+    () => GET_PRODUCTS_BY_DAY(),
     {
       onSuccess: () => console.log("Продукты финиш !"),
     }
   );
 
   const deleteProductById = useMutation(DELETE_PRODUCT_BY_ID, {
-    onSuccess: () => queryClient.refetchQueries(["repoData"]),
+    onSuccess: () => queryClient.refetchQueries(["dataByDay"]),
   });
 
   return (

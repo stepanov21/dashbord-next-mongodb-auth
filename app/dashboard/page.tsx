@@ -2,6 +2,7 @@
 
 import UserBage from "@/components/layout/UserBage";
 import { GET_ALL_USERS } from "@/react-query/user/user";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useRef } from "react";
 import { useQuery } from "react-query";
 
@@ -23,8 +24,6 @@ const DashboardPage = () => {
 
   if (isLoading) return;
 
-  console.log(data);
-
   return (
     <div>
       <div className="h-[6px] border-y border-y-[black] mb-4 relative">
@@ -35,20 +34,22 @@ const DashboardPage = () => {
           ref={circleRef}
           className={`h-[13px] w-[13px] border border-[black] rounded-full bg-green absolute translate-y-[50%] bottom-[50%]`}></div>
       </div>
-      {data.data ? (
-        data.data.map((item, key) => (
-          <UserBage
-            key={key}
-            className="border border-[black] rounded-main p-2 mb-2"
-            avatar={item.image}
-            username={item.name}
-            email={item.email}
-            createdAt={item.createdAt}
-          />
-        ))
-      ) : (
-        <div>Loading...</div>
-      )}
+      <div className="grid grid-cols-1">
+        {data.data ? (
+          data.data.map((item, key) => (
+            <UserBage
+              key={key}
+              className="border border-[black] rounded-main p-2 mb-2"
+              avatar={item.image}
+              username={item.name}
+              email={item.email}
+              createdAt={item.createdAt}
+            />
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
     </div>
   );
 };

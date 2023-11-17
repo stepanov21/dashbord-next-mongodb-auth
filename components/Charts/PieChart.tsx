@@ -1,8 +1,5 @@
 "use client";
 
-import { TProduct } from "@/models/product";
-import { GET_ALL_PRODUCTS } from "@/react-query/product/product";
-import { cn } from "@/utils/cn";
 import { getAccumFromCategory } from "@/utils/getAccumFromCategory";
 import {
   Chart as ChartJS,
@@ -13,17 +10,10 @@ import {
   ChartOptions,
 } from "chart.js";
 import { _DeepPartialObject } from "chart.js/dist/types/utils";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import { useQuery } from "react-query";
 import { selectOption } from "../FormControls/selectOption";
+import LabelPieChart from "./LabelPieChart";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ isLoading, data }) => {
@@ -53,8 +43,6 @@ const PieChart = ({ isLoading, data }) => {
     ],
   };
 
-  console.log(category.filter((item) => (item.sum !== 0 ? item.color : null)));
-
   const options: ChartOptions<"pie"> = {
     plugins: {
       legend: {
@@ -70,19 +58,7 @@ const PieChart = ({ isLoading, data }) => {
     <div className="grid grid-cols-[140px_1fr] mt-4 items-center">
       <ul className="flex flex-col gap-2">
         {category.map((item, key) => {
-          return (
-            <li
-              className="flex gap-2 items-center p-2 border border-[#000] rounded-main "
-              key={key}>
-              <span
-                className={cn(
-                  `min-h-[10px] min-w-[10px] inline-block rounded-full border border-[#000]
-                `,
-                  `bg-[${item.color}]`
-                )}></span>
-              {item.name}
-            </li>
-          );
+          return <LabelPieChart {...item} key={key} />;
         })}
       </ul>
       <div className="my-0 ml-auto mt-4 w-[50vw] self-center">

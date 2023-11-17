@@ -2,7 +2,12 @@
 
 import Link from "@/node_modules/next/link";
 import { usePathname } from "next/navigation";
-import { LuLayoutDashboard, LuUsers2, LuTable } from "react-icons/lu";
+import {
+  LuLayoutDashboard,
+  LuUsers2,
+  LuTable,
+  LuSettings,
+} from "react-icons/lu";
 
 const menuItems = [
   {
@@ -20,6 +25,11 @@ const menuItems = [
     name: "Visitors",
     icon: <LuUsers2 size={18} />,
   },
+  {
+    path: "/settings",
+    name: "Settings",
+    icon: <LuSettings size={18} />,
+  },
 ];
 
 const Aside = () => {
@@ -31,17 +41,17 @@ const Aside = () => {
       </h2>
       <nav className="">
         <h4 className="opacity-40 mb-4 sm:hidden">Menu</h4>
-        <ul className="flex flex-col gap-4 sm:flex-row sm:overflow-auto">
+        <ul className="flex flex-col gap-4 sm:flex-row sm:justify-between">
           {menuItems &&
             menuItems.map((item, key) => {
               return (
-                <Link key={key} href={item.path}>
+                <Link className="flex-1" key={key} href={item.path}>
                   <li
-                    className={`flex items-center btn-shadow gap-2 p-3 mb-1 rounded-xl hover:bg-green duration-500 ease ${
-                      pathname === item.path ? "bg-green" : ""
+                    className={`flex items-center justify-center btn-shadow gap-2 py-3 mb-1 rounded-xl hover:bg-green duration-500 ease ${
+                      pathname === item.path ? "bg-green shrink-1 px-2" : ""
                     }`}>
                     <span>{item.icon}</span>
-                    {item.name}
+                    {pathname === item.path && item.name}
                   </li>
                 </Link>
               );
