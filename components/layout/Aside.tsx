@@ -35,7 +35,7 @@ const menuItems = [
 const Aside = () => {
   const pathname = usePathname();
   return (
-    <div className="h-screen bg-gray p-10 fixed w-[25vw] sm:h-auto bottom-0 sm:w-screen sm:p-4 sm:border-t sm:border-t-[black]">
+    <div className="h-screen bg-gray p-4 ml-[calc((100vw-1140px+38px)/2)] xl:ml-[calc((100vw-1000px+38px)/2)] lg:ml-[calc((100vw-768px+38px)/2)] fixed w-[200px] sm:ml-0 sm:h-auto bottom-0 left-0 border-x border-[black] sm:w-screen sm:border-x-0 sm:border-t sm:border-t-[black] sm:bg-milk sm:dark:bg-gray">
       <h2 className="text-4xl mb-10 sm:hidden">
         | Save<span className="text-green">Money |</span>
       </h2>
@@ -47,11 +47,19 @@ const Aside = () => {
               return (
                 <Link className="flex-1" key={key} href={item.path}>
                   <li
-                    className={`flex items-center justify-center btn-shadow gap-2 py-3 mb-1 rounded-xl hover:bg-green duration-500 ease ${
-                      pathname === item.path ? "bg-green shrink-1 px-2" : ""
+                    className={`flex items-center sm:justify-center px-2 sm:px-3 btn-shadow py-3 mb-1 rounded-xl hover:bg-green duration-500 ease ${
+                      pathname === item.path
+                        ? "bg-green shrink-1 px-2 text-black"
+                        : ""
                     }`}>
                     <span>{item.icon}</span>
-                    {pathname === item.path && item.name}
+                    {pathname === item.path ? (
+                      <span className="hidden sm:inline ml-2">
+                        {pathname === item.path && item.name}
+                      </span>
+                    ) : null}
+
+                    <span className="sm:hidden ml-2">{item.name}</span>
                   </li>
                 </Link>
               );

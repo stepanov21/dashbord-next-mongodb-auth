@@ -31,16 +31,16 @@ const UserBage: FC<IUserBage> = ({
       className={cn(
         "flex items-center",
         props.className,
-        session.user.email === email &&
+        session?.user?.email === email &&
           createdAt &&
-          "shadow-active-bage order-first"
+          "shadow-active-bage order-first dark:bg-gray"
       )}>
       <div className="rounded-full overflow-hidden">
         {avatar && <Image src={avatar} width={50} height={50} alt="avatar" />}
       </div>
       <div className="flex flex-col ml-3 items-start">
         <span>
-          {session.user.email === email && createdAt ? "You" : username}
+          {session?.user?.email === email && createdAt ? "You" : username}
         </span>
         <span className="bg-green text-greenDark px-2 py-1 border border-greenDark rounded-main mt-1">
           Beginner

@@ -2,7 +2,6 @@
 
 import UserBage from "@/components/layout/UserBage";
 import { GET_ALL_USERS } from "@/react-query/user/user";
-import { useSession } from "next-auth/react";
 import React, { useEffect, useRef } from "react";
 import { useQuery } from "react-query";
 
@@ -17,7 +16,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     if (!lineRef.current || !circleRef.current) return;
-    const days = 150;
+    const days = 160;
     lineRef.current.style.width = `${days + 6}px`;
     circleRef.current.style.left = `${days}px`;
   });
@@ -29,10 +28,10 @@ const DashboardPage = () => {
       <div className="h-[6px] border-y border-y-[black] mb-4 relative">
         <div
           ref={lineRef}
-          className={`h-[6px] bg-green border-b border-b-[black] mb-4 absolute`}></div>
+          className={`h-[6px] bg-green border-b border-b-[black] mb-4 absolute transition-all`}></div>
         <div
           ref={circleRef}
-          className={`h-[13px] w-[13px] border border-[black] rounded-full bg-green absolute translate-y-[50%] bottom-[50%]`}></div>
+          className={`h-[13px] w-[13px] border border-[black] rounded-full bg-green absolute translate-y-[50%] bottom-[50%] transition-all`}></div>
       </div>
       <div className="grid grid-cols-1">
         {data.data ? (

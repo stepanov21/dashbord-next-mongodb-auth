@@ -7,24 +7,27 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       borderRadius: {
         main: "5px",
       },
-    },
-    colors: {
-      milk: "#F5E8DF",
-      green: "#D4E95E",
-      greenDark: "#7E9115",
-      blue: "#7CBDC7",
-      yellow: "#F1D304",
+      colors: {
+        milk: "#F5E8DF",
+        green: "#D4E95E",
+        greenDark: "#7E9115",
+        blue: "#7CBDC7",
+        yellow: "#F1D304",
+        gray: "#3C3C3D",
+        darlGray: "#2E2E30"
+      }
     },
     screens: {
       "2xl": { max: "1535px" },
       // => @media (max-width: 1535px) { ... }
 
-      xl: { max: "1279px" },
+      xl: { max: "1200px" },
       // => @media (max-width: 1279px) { ... }
 
       lg: { max: "1023px" },
@@ -33,7 +36,7 @@ const config: Config = {
       md: { max: "767px" },
       // => @media (max-width: 767px) { ... }
 
-      sm: { max: "639px" },
+      sm: { max: "767px" },
       // => @media (max-width: 639px) { ... }
     },
   },

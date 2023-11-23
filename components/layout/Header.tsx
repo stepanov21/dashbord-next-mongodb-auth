@@ -1,31 +1,29 @@
 "use client";
 
+import { UserContext } from "@/provider/UserInfoProvider";
 import { Button } from "@/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useContext } from "react";
 import UserBage from "./UserBage";
 
 const Header = () => {
-  const { status, data } = useSession();
+  const userInfo = useContext(UserContext)
+  
+  console.log("🚀 ~ file: Header.tsx:11 ~ Header ~ userInfo:", userInfo)
+  
 
   return (
-    <div className="bg-gray flex rounded-2xl w-full mb-5 items-center">
-      {status === "authenticated" ? (
+    <div className="flex rounded-2xl w-full mb-5 items-center">
         <UserBage
-          avatar={data?.user?.image!}
-          username={data?.user?.name!}
-          email={data?.user?.email!}
+          avatar={userInfo?.image}
+          username={userInfo?.name}
+          email={userInfo?.email}
         />
-      ) : null}
-
-      {status === "unauthenticated" ? (
-        <Button className="ml-auto" onClick={() => signIn()}>
-          Sign In
-        </Button>
-      ) : (
-        <Button className="ml-auto" onClick={() => signOut()}>
+        <Button
+          className="ml-auto"
+          onClick={() => signOut({ callbackUrl: "/auth" })}>
           Sign Out
         </Button>
-      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ body {
   font-family: "Mabry Pro";
   font-size: 14px;
   line-height: 1;
+  overflow-x: hidden;
 }
 
 :root {
@@ -17,13 +18,51 @@ body {
 	--secondary-color: #e6eef9;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4e95e;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #f5e8df;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+
 h2 {
   font-size: 18px;
 }
 .btn-shadow {
   border: 1px solid black;
   box-shadow: 1px 2px 0px 0px black;
+	@apply dark:border-[#111111]
 }
+
+
 
 .tabs {
   display: flex;

@@ -3,7 +3,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, FC } from "react";
 
 const buttonVariants = cva(
-  "uppercase py-3 font-bold px-6 bg-blue rounded-main btn-shadow",
+  "uppercase py-3 font-bold px-6 bg-blue rounded-main btn-shadow dark:text-[#000]",
   {
     variants: {
       size: {

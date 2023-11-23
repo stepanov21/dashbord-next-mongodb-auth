@@ -1,6 +1,7 @@
 "use client";
 
 import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
+import FormHeader from "@/components/FormAddProduct/FormHeader";
 import ProductSearch from "@/components/pages/Products/ProductSearch";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import { queryClient } from "@/provider/QueryProvider";
@@ -35,6 +36,13 @@ const ProductPage = () => {
         />
       </div>
       <div className="btn-shadow border-t-none bg-milk p-3 rounded-main rounded-t-none relative top-[-1px]">
+        {data?.data.length ? (
+          <FormHeader />
+        ) : (
+          <div className="opacity-40 text-center py-4">
+            You haven't added anything yet
+          </div>
+        )}
         {data?.data &&
           data?.data
             .filter((item) => item?.productName.includes(searchValue))

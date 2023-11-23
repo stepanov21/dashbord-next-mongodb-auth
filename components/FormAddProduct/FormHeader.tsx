@@ -1,6 +1,6 @@
 const FormHeader = () => {
   return (
-    <div className="w-full grid grid-cols-[1.5fr_1fr_1fr_2fr_min-content] rounded-xl px-5 pt-4 pb-1 mt-4 opacity-40 sm:hidden">
+    <div className="w-full grid grid-cols-[1.5fr_1fr_1fr_2fr_min-content] rounded-xl px-5 pb-1 mt-2 opacity-40 sm:hidden">
       <span className="overflow-hidden overflow-ellipsis">Название</span>
       <span className="text-center overflow-hidden overflow-ellipsis">
         Колличество

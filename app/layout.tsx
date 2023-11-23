@@ -7,6 +7,8 @@ import NextAuthProvider from "@/auth-provider/index";
 import QueryProvider from "@/provider/QueryProvider";
 import { usePathname } from "next/navigation";
 import Head from "next/head";
+import UserInfoProvider from "@/provider/UserInfoProvider";
+import MyThemeProvider from "@/provider/ThemeProvider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -24,14 +26,18 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="flex bg-black min-h-screen">
+      <body className="flex bg-black min-h-screen max-w-[1140px] xl:max-w-[1000px] lg:max-w-[768px] w-full px-5 mx-auto dark:bg-darlGray dark:text-[#fff] border-[#fff]">
         <NextAuthProvider>
           <QueryProvider>
-            {pathname !== "/auth" && <Aside />}
-            <div className="flex flex-1 flex-col ml-[calc(25vw+24px)] mr-6 my-6 sm:m-4 sm:mr-4 sm:w-screen">
-              {pathname !== "/auth" && <Header />}
-              <main className="mb-[70px]">{children}</main>
-            </div>
+            <MyThemeProvider>
+              <UserInfoProvider>
+                {pathname !== "/auth" && <Aside />}
+                <div className="flex flex-1 flex-col ml-[calc(200px)] border-r border-r-[black] p-6 sm:p-0 sm:mt-4 sm:border-none sm:ml-0 sm:w-screen ">
+                  {pathname !== "/auth" && <Header />}
+                  <main className="mb-[70px]">{children}</main>
+                </div>
+              </UserInfoProvider>
+            </MyThemeProvider>
           </QueryProvider>
         </NextAuthProvider>
       </body>

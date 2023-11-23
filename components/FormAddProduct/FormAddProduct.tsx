@@ -56,7 +56,6 @@ const FormAddProduct = () => {
           Add new
         </Button>
       </div>
-      <FormHeader />
       {isOpenModal && (
         <form
           data-close="true"

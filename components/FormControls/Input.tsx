@@ -1,7 +1,7 @@
 import { FC, InputHTMLAttributes, memo } from "react";
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
 }
 
 const Input: FC<IInput> = ({ label, ...props }) => {
@@ -14,7 +14,7 @@ const Input: FC<IInput> = ({ label, ...props }) => {
       </label>
       <input
         {...props}
-        className="bg-milk border border-black py-3 pl-3 pr-5 rounded-md focus:none focus-visible:none focus:milk w-full placeholder:text-[black] placeholder:opacity-50"
+        className="bg-milk border border-black py-3 pl-3 pr-5 rounded-md focus:none focus-visible:none focus:milk w-full placeholder:text-[black] placeholder:opacity-50 focus:outline-none"
       />
     </div>
   );

@@ -1,11 +1,12 @@
 import { Schema, model, models, Model } from "mongoose";
 
-const  {default: mongoose} = require('mongoose')
-
-interface IUser {
+export interface IUser {
   email: string;
   name: string;
   image: string;
+  language: 'English' | 'Ukrainian';
+  darkmode: boolean,
+  dayLimit: number
 }
 
 const userSchema = new Schema<IUser>(
@@ -21,6 +22,19 @@ const userSchema = new Schema<IUser>(
     image: {
       type: String,
       required: true
+    },
+    language: {
+      type: String,
+      enum: ['English', 'Ukrainian'],
+      default: 'English'
+    },
+    darkmode: {
+      type: Boolean,
+      default: false
+    },
+    dayLimit: {
+      type: Number,
+      default: 400
     }
   }, {
     timestamps: true

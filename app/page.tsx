@@ -54,7 +54,7 @@ const Home = () => {
           className="bg-green px-2 py-4 aria-disabled:opacity-40">
           <BiLeftArrowAlt />
         </Button>
-        <div className="btn-shadow rounded-main flex-1 flex items-center px-4 justify-between">
+        <div className="btn-shadow rounded-main flex-1 flex items-center px-4 justify-between  dark:bg-gray">
           <h2>Current week:</h2>
           <span>{getAccumFromCategory(data?.data)}₴</span>
         </div>
