@@ -1,5 +1,6 @@
 import { IUser } from "@/models/user";
 import { GET_USER_INFO } from "@/react-query/user/user";
+import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { createContext, useContext, useEffect } from "react";
 import { useQuery } from "react-query";
@@ -7,6 +8,7 @@ import { useQuery } from "react-query";
 export const UserContext = createContext<Partial<IUser>>({});
 
 const UserInfoProvider = ({ children }) => {
+  const { data: session} = useSession()
   const { isLoading, error, data, refetch } = useQuery(
     "userInfo",
     () => GET_USER_INFO(),
@@ -14,6 +16,10 @@ const UserInfoProvider = ({ children }) => {
       onSuccess: () => console.log("Инфа юзера пришла !"),
     }
   );
+
+  useEffect(() => {
+    refetch()
+  }, [session])
 
   const { systemTheme, theme, setTheme } = useTheme();
   const userInfo = useContext(UserContext)

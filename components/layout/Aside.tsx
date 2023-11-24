@@ -35,8 +35,8 @@ const menuItems = [
 const Aside = () => {
   const pathname = usePathname();
   return (
-    <div className="h-screen bg-gray p-4 fixed w-[200px] ml-[calc((100vw-70vw-200px)/2)] lg:ml-[calc((100vw-600px-200px)/2)] sm:ml-0 sm:h-auto bottom-0 left-0 border-x border-[black] sm:w-screen sm:border-x-0 sm:border-t sm:border-t-[black] sm:bg-milk sm:dark:bg-gray">
-      <h2 className="text-4xl mb-10 sm:hidden">
+    <div className="h-screen p-4 fixed w-[200px] ml-[calc((100vw-70vw-200px)/2)] lg:ml-[calc((100vw-600px-200px)/2)] sm:ml-0 sm:h-auto bottom-0 left-0 border-x border-[black] sm:w-screen sm:border-x-0 sm:border-t sm:border-t-[black] sm:bg-milk sm:dark:bg-gray">
+      <h2 className="text-xl mb-10 sm:hidden">
         | Save<span className="text-green">Money |</span>
       </h2>
       <nav className="">
