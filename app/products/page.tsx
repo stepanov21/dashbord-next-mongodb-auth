@@ -40,7 +40,7 @@ const ProductPage = () => {
           <FormHeader />
         ) : (
           <div className="opacity-40 text-center py-4">
-            You haven't added anything yet
+            You have not added anything yet
           </div>
         )}
         {data?.data &&

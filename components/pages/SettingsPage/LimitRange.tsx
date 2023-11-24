@@ -11,8 +11,9 @@ const LimitRange = () => {
   const {changeSetting, userInfo} = useChangeSetting();
 
   useEffect(() => {
-
     setLimit(userInfo?.dayLimit)
+    
+    // eslint-disable-next-line
   }, [])
 
   return (

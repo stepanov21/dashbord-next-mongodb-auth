@@ -33,10 +33,7 @@ const config: Config = {
       lg: { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
 
-      md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
-
-      sm: { max: "767px" },
+      sm: { max: "801px" },
       // => @media (max-width: 639px) { ... }
     },
   },

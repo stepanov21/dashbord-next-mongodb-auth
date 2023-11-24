@@ -26,13 +26,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="flex bg-black min-h-screen max-w-[1140px] xl:max-w-[1000px] lg:max-w-[768px] w-full px-5 mx-auto dark:bg-darlGray dark:text-[#fff] border-[#fff]">
+      <body className="flex bg-milk min-h-screen max-w-[70vw] lg:max-w-[600px] sm:max-w-full ml-[calc(200px+(100vw-70vw-200px)/2)] lg:ml-[calc(200px+(100vw-600px-200px)/2)] sm:ml-0 w-full sm:w-screen dark:bg-darlGray dark:text-[#fff] sm:px-5">
         <NextAuthProvider>
           <QueryProvider>
             <MyThemeProvider>
               <UserInfoProvider>
                 {pathname !== "/auth" && <Aside />}
-                <div className="flex flex-1 flex-col ml-[calc(200px)] border-r border-r-[black] p-6 sm:p-0 sm:mt-4 sm:border-none sm:ml-0 sm:w-screen ">
+                <div className="flex flex-1 flex-col border-r border-r-[black] p-6 sm:p-0 sm:mt-4 sm:border-none sm:ml-0 sm:w-screen ">
                   {pathname !== "/auth" && <Header />}
                   <main className="mb-[70px]">{children}</main>
                 </div>
