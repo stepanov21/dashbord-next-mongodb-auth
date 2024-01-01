@@ -3,17 +3,13 @@
 import { TProduct } from "@/models/product/index";
 import { Button } from "@/ui/Button";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import {
-  EventHandler,
   FormEvent,
   memo,
-  MouseEventHandler,
   useState,
 } from "react";
 import Input from "../FormControls/Input";
 import Select from "../FormControls/Select";
-import FormHeader from "./FormHeader";
 import { inputsData } from "./inputsData";
 import { useMutation } from "react-query";
 import { queryClient } from "@/provider/QueryProvider";
@@ -22,20 +18,30 @@ import { ADD_PRODUCT } from "@/react-query/product/product";
 const FormAddProduct = () => {
   const { data: userData } = useSession();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [validError, setValidError] = useState("");
   const [formData, setFormData] = useState<TProduct>({
     productName: "",
     count: 1,
     price: null,
     category: "",
-    email: "",
+    email: "main",
   });
 
   const addProduct = useMutation(ADD_PRODUCT, {
     onSuccess: () => queryClient.refetchQueries(["dataByDay"]),
   });
 
-  const addNewProduct = async (e: FormEvent) => {
+  const addNewProduct = (e: FormEvent) => {
     e.preventDefault();
+    for (let i in formData) {
+      if (!formData[i]) {
+        setValidError(`Field ${i} must be filled`);
+        return
+      } else {setValidError('')}
+    }
+
+    console.log(validError, formData);
+
     addProduct.mutate({ formData, email: userData?.user?.email });
     setIsOpenModal(false);
   };
@@ -43,8 +49,6 @@ const FormAddProduct = () => {
   const closeModalOutside = (e: { target: HTMLFormElement }) => {
     e?.target?.localName === "form" && setIsOpenModal(false);
   };
-
-  console.log(formData);
 
   return (
     <>
@@ -60,9 +64,9 @@ const FormAddProduct = () => {
         <form
           data-close="true"
           onClick={(e) => closeModalOutside(e as any)}
-          onSubmit={(e) => addNewProduct(e)}
+          onSubmit={(e) => addNewProduct(e)} 
           className="absolute inset-0 bg-[black] bg-opacity-50 flex items-center justify-center p-3 z-10">
-          <div className="bg-milk w-full max-w-[350px] rounded-2xl px-4 py-4 flex flex-col gap-3 btn-shadow">
+          <div className="relative bg-milk dark:bg-gray w-full max-w-[350px] rounded-main px-4 py-4 flex flex-col gap-3 btn-shadow">
             {inputsData &&
               inputsData.length &&
               inputsData.map((input, key) => {
@@ -92,6 +96,11 @@ const FormAddProduct = () => {
             <Button type="submit" className="w-full mt-2">
               Add New Product
             </Button>
+            {validError && (
+              <div className="absolute bg-red-300 px-4 py-2 btn-shadow bottom-[-30px] left-[50%] translate-x-[-50%] whitespace-nowrap">
+                {validError}
+              </div>
+            )}
           </div>
         </form>
       )}

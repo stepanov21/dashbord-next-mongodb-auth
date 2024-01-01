@@ -13,7 +13,7 @@ const Select: FC<SelectHTMLAttributes<HTMLSelectElement>> = ({ ...props }) => {
         {...props}
         id="category"
         name="category"
-        className="border block border-[black] bg-milk p-3 rounded-md w-full focus:outline-none">
+        className="border block border-[black] bg-milk dark:bg-gray p-3 rounded-md w-full focus:outline-none">
         <option value="TV">Select Category</option>
         {selectOption.map((option, key) => {
           return (

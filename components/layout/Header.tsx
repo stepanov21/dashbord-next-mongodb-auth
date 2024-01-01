@@ -9,9 +9,6 @@ import UserBage from "./UserBage";
 const Header = () => {
   const userInfo = useContext(UserContext)
   
-  console.log("🚀 ~ file: Header.tsx:11 ~ Header ~ userInfo:", userInfo)
-  
-
   return (
     <div className="flex rounded-2xl w-full mb-5 items-center">
         <UserBage

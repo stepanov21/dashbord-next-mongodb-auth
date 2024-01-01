@@ -35,7 +35,7 @@ const menuItems = [
 const Aside = () => {
   const pathname = usePathname();
   return (
-    <div className="h-screen p-4 fixed w-[200px] ml-[calc((100vw-70vw-200px)/2)] lg:ml-[calc((100vw-600px-200px)/2)] sm:ml-0 sm:h-auto bottom-0 left-0 border-x border-[black] sm:w-screen sm:border-x-0 sm:border-t sm:border-t-[black] sm:bg-milk sm:dark:bg-gray">
+    <div className="h-[calc(100vh-24px-24px)] p-4 fixed rounded-main bottom-6 w-[200px] ml-[calc((100vw-70vw-200px)/2)] lg:ml-[calc((100vw-600px-200px)/2)] sm:ml-0 sm:h-auto sm:bottom-0 left-0 border border-[black] sm:w-screen sm:border-x-0 sm:border-t sm:border-t-[black] sm:bg-milk sm:dark:bg-gray ">
       <h2 className="text-xl mb-10 sm:hidden">
         | Save<span className="text-green">Money |</span>
       </h2>
@@ -47,7 +47,7 @@ const Aside = () => {
               return (
                 <Link className="flex-1" key={key} href={item.path}>
                   <li
-                    className={`flex items-center sm:justify-center px-2 sm:px-3 btn-shadow py-3 mb-1 rounded-xl hover:bg-green duration-500 ease ${
+                    className={`flex items-center sm:justify-center px-2 sm:px-3 btn-shadow py-3 mb-1 rounded-main hover:bg-green duration-500 ease ${
                       pathname === item.path
                         ? "bg-green shrink-1 px-2 text-black"
                         : ""

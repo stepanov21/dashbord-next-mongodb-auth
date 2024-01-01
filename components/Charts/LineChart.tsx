@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -29,18 +29,7 @@ ChartJS.register(
   Legend
 );
 
-export const options: ChartOptions<"line"> = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-};
-
-const labels = getNumbersByMonth();
-
-export function LineChart() {
+const LineChart = () => {
   const {
     isLoading,
     error,
@@ -49,6 +38,15 @@ export function LineChart() {
 
   if (isLoading) return null;
 
+  const options: ChartOptions<"line"> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+  
   console.log(dataProducts);
 
   const filterByDay = (data, day) => {
@@ -58,7 +56,7 @@ export function LineChart() {
   };
 
   const dataProductsByMonthDay = () => {
-    return labels.map((day) => {
+    return getNumbersByMonth().map((day) => {
       return filterByDay(dataProducts.data, day).reduce(
         (acc, item) => acc + item.price,
         0
@@ -67,7 +65,7 @@ export function LineChart() {
   };
 
   const data: ChartData<"line"> = {
-    labels,
+    labels: getNumbersByMonth(),
     datasets: [
       {
         fill: true,
@@ -85,3 +83,5 @@ export function LineChart() {
     </div>
   );
 }
+
+export default memo(LineChart);

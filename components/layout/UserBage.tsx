@@ -47,7 +47,7 @@ const UserBage: FC<IUserBage> = ({
         </span>
       </div>
       {createdAt && (
-        <span className="ml-auto border border-[black] rounded-main bg-yellow p-2 px-3 w-20 text-center">
+        <span className="ml-auto border border-[black] rounded-main bg-yellow dark:text-black p-2 px-3 w-20 text-center">
           {`${Math.floor((end - start) / 1000 / 60 / 60 / 24)} days`}
         </span>
       )}

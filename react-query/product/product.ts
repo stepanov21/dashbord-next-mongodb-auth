@@ -1,3 +1,4 @@
+import { TProduct } from '@/models/product/index';
 export const GET_ALL_PRODUCTS = () =>
 fetch(`/api/product/get-all-product`, {
   method: "GET",

@@ -12,7 +12,7 @@ const LimitRange = () => {
 
   useEffect(() => {
     setLimit(userInfo?.dayLimit)
-    
+
     // eslint-disable-next-line
   }, [])
 
@@ -38,7 +38,7 @@ const LimitRange = () => {
         className="w-full h-2 border border-[black] rounded-main cursor-pointer appearance-none bg-milk in-range:bg-yellow in-range:border out-of-range:bg-yellow"
       />
       <div className="flex justify-between mt-3">
-        <span className="px-3 py-2 btn-shadow bg-yellow flex items-center justify-center rounded-main">
+        <span className="px-3 py-2 btn-shadow bg-yellow dark:text-black flex items-center justify-center rounded-main">
           {limit}
         </span>
         <Button type="submit">Change Limit</Button>

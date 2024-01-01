@@ -16,8 +16,10 @@ export async function GET(req: NextRequest, { params }) {
   const currentMonday = new Date(formatISO(startOfWeek(new Date(), { weekStartsOn: 1 })))
   const currentSunday = new Date(formatISO(lastDayOfWeek(new Date(), { weekStartsOn: 1 }))) 
 
-  const prevMonday = currentMonday.setDate(currentMonday.getDate() - 7 * weekAgo)
-  const prevSunday = currentSunday.setDate(currentSunday.getDate() - (7 * weekAgo) - 1)
+  const prevMonday = currentMonday.setDate(currentMonday.getDate() - (7 * weekAgo) - 1)
+  const prevSunday = currentSunday.setDate(currentSunday.getDate() - (7 * weekAgo))
+
+  console.log(formatISO(prevMonday), formatISO(prevSunday))
 
   
   try {

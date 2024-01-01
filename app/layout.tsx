@@ -6,9 +6,9 @@ import Aside from "@/components/layout/Aside";
 import NextAuthProvider from "@/auth-provider/index";
 import QueryProvider from "@/provider/QueryProvider";
 import { usePathname } from "next/navigation";
-import Head from "next/head";
 import UserInfoProvider from "@/provider/UserInfoProvider";
 import MyThemeProvider from "@/provider/ThemeProvider";
+import { twMerge } from "tailwind-merge";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -26,13 +26,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="flex bg-milk min-h-screen max-w-[70vw] lg:max-w-[600px] sm:max-w-full ml-[calc(200px+(100vw-70vw-200px)/2)] lg:ml-[calc(200px+(100vw-600px-200px)/2)] sm:ml-0 w-full sm:w-screen dark:bg-darlGray dark:text-[#fff] sm:px-5">
+      <body
+      className={twMerge('flex bg-milk min-h-screen max-w-[70vw] lg:max-w-[600px] sm:max-w-full ml-[calc(200px+(100vw-70vw-200px)/2)] lg:ml-[calc(200px+(100vw-600px-200px)/2)] sm:ml-0 w-full sm:w-screen dark:bg-darlGray dark:text-[#fff] sm:px-5', pathname === "/auth" && 'flex items-center justify-center m-auto lg:m-auto')}>
         <NextAuthProvider>
           <QueryProvider>
             <MyThemeProvider>
               <UserInfoProvider>
                 {pathname !== "/auth" && <Aside />}
-                <div className="flex flex-1 flex-col border-r border-r-[black] p-6 sm:p-0 sm:mt-4 sm:border-none sm:ml-0 sm:w-screen ">
+                <div className={twMerge("flex flex-1 flex-col rounded-main m-6 border border-[black] p-4 sm:p-0 sm:mt-4 sm:border-none sm:mx-0 sm:w-screen ", pathname === "/auth" && 'border-none')}>
                   {pathname !== "/auth" && <Header />}
                   <main className="mb-[70px]">{children}</main>
                 </div>

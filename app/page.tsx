@@ -1,7 +1,5 @@
 "use client";
 
-
-import { LineChart } from "@/components/Charts/LineChart";
 import PieChart from "@/components/Charts/PieChart";
 import { TProduct } from "@/models/product/index";
 import {
@@ -11,6 +9,7 @@ import { Button } from "@/ui/Button";
 import { useQuery } from "react-query";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { useCallback, useEffect, useState } from "react";
+import LineChart from "@/components/Charts/LineChart";
 
 
 const Home = () => {
@@ -19,6 +18,8 @@ const Home = () => {
   const { isLoading, error, data, refetch } = useQuery(["repoData"], () =>
     GET_PRODUCTS_BY_WEEK(weekAgo)
   );
+
+  console.log(data)
 
   useEffect(() => {
     refetch();
@@ -69,8 +70,10 @@ const Home = () => {
         </Button>
       </div>
       {/* <Card filter="Итого" sum={getAccumFromCategory(data?.data)} /> */}
-      <PieChart isLoading={isLoading} data={data} />
-      <LineChart />
+      <div className="grid">
+        <PieChart isLoading={isLoading} data={data} />
+        <LineChart />
+      </div>
     </>
   );
 };

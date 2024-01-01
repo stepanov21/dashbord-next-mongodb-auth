@@ -20,14 +20,14 @@ const ProductItem: FC<IProductItem> = ({
   const colorCategory = selectOption.find((item) => item.name === category);
 
   return (
-    <div className="w-full grid grid-cols-[1.5fr_1fr_1fr_2fr_min-content] gap-1 bg-black rounded-main p-3 mt-2 border border-[#181818] items-center aria-disabled:opacity-40 first:mt-0">
+    <div className="w-full grid grid-cols-[1.5fr_1fr_1fr_2fr_min-content] gap-1 dark:bg-gray rounded-main p-3 mt-2 border border-[#181818] items-center aria-disabled:opacity-40 first:mt-0">
       <span>{productName}</span>
       <span className="text-center">{count}</span>
       <span className="text-center">
         {price} <span className="">₴</span>
       </span>
       <div
-        className={`h-3 w-3 border border-[black] mx-auto rounded-full bg-[${colorCategory.color}]`}></div>
+        className={`h-3 w-3 border border-[black] mx-auto rounded-full bg-[${colorCategory?.color}]`}></div>
       <span
         className="flex justify-end"
         onClick={() => deleteProductById(_id!)}>

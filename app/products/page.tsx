@@ -4,6 +4,7 @@ import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 import FormHeader from "@/components/FormAddProduct/FormHeader";
 import ProductSearch from "@/components/pages/Products/ProductSearch";
 import ProductItem from "@/components/ProductItem/ProductItem";
+import Scale from "@/components/Scale/Scale";
 import { queryClient } from "@/provider/QueryProvider";
 import {
   DELETE_PRODUCT_BY_ID,
@@ -29,13 +30,14 @@ const ProductPage = () => {
   return (
     <div className="">
       <FormAddProduct />
-      <div className="btn-shadow bg-milk border-b-none p-3 rounded-main mt-4 rounded-b-none">
+      <Scale/>
+      <div className="btn-shadow bg-milk dark:bg-gray border-b-none p-3 rounded-main mt-4 rounded-b-none">
         <ProductSearch
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      <div className="btn-shadow border-t-none bg-milk p-3 rounded-main rounded-t-none relative top-[-1px]">
+      <div className="btn-shadow border-t-none bg-milk dark:bg-gray p-3 rounded-main rounded-t-none relative top-[-1px]">
         {data?.data.length ? (
           <FormHeader />
         ) : (

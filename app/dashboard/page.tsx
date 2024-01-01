@@ -11,28 +11,10 @@ const DashboardPage = () => {
     GET_ALL_USERS
   );
 
-  const lineRef = useRef<HTMLDivElement>();
-  const circleRef = useRef<HTMLDivElement>();
-
-  useEffect(() => {
-    if (!lineRef.current || !circleRef.current) return;
-    const days = 160;
-    lineRef.current.style.width = `${days + 6}px`;
-    circleRef.current.style.left = `${days}px`;
-  });
-
   if (isLoading) return;
 
   return (
     <div>
-      <div className="h-[6px] border-y border-y-[black] mb-4 relative">
-        <div
-          ref={lineRef}
-          className={`h-[6px] bg-green border-b border-b-[black] mb-4 absolute transition-all`}></div>
-        <div
-          ref={circleRef}
-          className={`h-[13px] w-[13px] border border-[black] rounded-full bg-green absolute translate-y-[50%] bottom-[50%] transition-all`}></div>
-      </div>
       <div className="grid grid-cols-1">
         {data.data ? (
           data.data.map((item, key) => (

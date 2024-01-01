@@ -19,7 +19,7 @@ const RadioButtonTheme = ({ theme }: { theme: boolean }) => {
 
 
   return (
-    <div className="btn-shadow mt-4 p-3 rounded-main flex items-center justify-between">
+    <div className="btn-shadow mt-4 p-3 rounded-main flex items-center justify-between dark:bg-gray">
       <span className="text-md font-bold">Dark Mode: </span>
       <label className="relative inline-flex items-center cursor-pointer border border-[black] rounded-full" onClick={() => toggleDarkMode()}>
         <input type="checkbox" value="" className="sr-only peer" checked={theme} disabled={addProduct.isLoading}/>

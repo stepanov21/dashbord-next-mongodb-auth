@@ -54,6 +54,8 @@ const PieChart = ({ isLoading, data }) => {
     },
   };
 
+  console.log('Перерисовка кругялшки')
+
   return (
     <div className="grid grid-cols-[140px_1fr] mt-4 items-center">
       <ul className="flex flex-col gap-2">
@@ -61,7 +63,7 @@ const PieChart = ({ isLoading, data }) => {
           return <LabelPieChart {...item} key={key} />;
         })}
       </ul>
-      <div className="my-0 ml-auto mt-4 w-[50vw] self-center">
+      <div className="my-0 mx-auto mt-4 self-center">
         <Pie data={dataForChart} options={options}>
           PieChart
         </Pie>

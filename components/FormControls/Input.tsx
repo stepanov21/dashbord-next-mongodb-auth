@@ -9,12 +9,13 @@ const Input: FC<IInput> = ({ label, ...props }) => {
     <div className="sm:col-span-2 w-full">
       <label
         htmlFor={props.name}
-        className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+        className="block mb-1 text-sm font-medium text-gray-900 dark:text-white ">
         {label}
       </label>
       <input
         {...props}
-        className="bg-milk border border-black py-3 pl-3 pr-5 rounded-md focus:none focus-visible:none focus:milk w-full placeholder:text-[black] placeholder:opacity-50 focus:outline-none"
+        className="bg-milk border border-black dark:bg-gray py-3 pl-3 pr-5 rounded-md focus:none focus-visible:none focus:milk w-full placeholder:text-[black] dark:placeholder:text-white placeholder:opacity-50 focus:outline-none "
+        placeholder="New username..."
       />
     </div>
   );
