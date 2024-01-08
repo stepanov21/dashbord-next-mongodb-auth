@@ -1,9 +1,11 @@
-import { cn } from "@/utils/cn";
-import { formatISO, getDate, getDay, getTime, parseISO } from "date-fns";
-import { intervalToDuration } from "date-fns/esm";
-import { useSession } from "next-auth/react";
+import { getTime, parseISO } from "date-fns";
 import Image from "next/image";
-import { FC, HTMLAttributes, memo } from "react";
+import { useSession } from "next-auth/react";
+import { memo } from "react";
+
+import { cn } from "@/utils/cn";
+
+import type { FC, HTMLAttributes } from "react";
 
 interface IUserBage extends HTMLAttributes<HTMLDivElement> {
   avatar: string;
@@ -33,8 +35,9 @@ const UserBage: FC<IUserBage> = ({
         props.className,
         session?.user?.email === email &&
           createdAt &&
-          "shadow-active-bage order-first dark:bg-gray"
-      )}>
+          "shadow-active-bage order-first dark:bg-gray",
+      )}
+    >
       <div className="rounded-full overflow-hidden">
         {avatar && <Image src={avatar} width={50} height={50} alt="avatar" />}
       </div>

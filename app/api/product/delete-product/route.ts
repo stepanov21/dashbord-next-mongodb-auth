@@ -1,6 +1,9 @@
-import Product from '@/models/product/index';
+import { NextResponse } from "next/server"
+
 import connectToDB from "@/database/index";
-import { NextRequest, NextResponse } from "next/server"
+import Product from '@/models/product/index';
+
+import type { NextRequest} from "next/server";
 
 export const dynamic = 'force-dynamic'
 

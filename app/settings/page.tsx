@@ -1,11 +1,12 @@
 'use client'
 
+import React, { useContext } from "react";
+
 import ChangeName from "@/components/pages/SettingsPage/ChangeName";
 import LimitRange from "@/components/pages/SettingsPage/LimitRange";
 import RadioButtonLanguage from "@/components/pages/SettingsPage/RadioButtonLanguage";
 import RadioButtonTheme from "@/components/pages/SettingsPage/RadioButtonTheme";
 import { UserContext } from "@/provider/UserInfoProvider";
-import React, { useContext } from "react";
 
 const SettigsPage = () => {
   const userInfo = useContext(UserContext);

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "@/node_modules/next/link";
 import { usePathname } from "next/navigation";
 import {
   LuLayoutDashboard,
@@ -8,6 +7,8 @@ import {
   LuTable,
   LuSettings,
 } from "react-icons/lu";
+
+import Link from "@/node_modules/next/link";
 
 const menuItems = [
   {

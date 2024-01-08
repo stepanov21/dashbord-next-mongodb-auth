@@ -1,5 +1,6 @@
-import { FC, SelectHTMLAttributes } from "react";
 import { selectOption } from "./selectOption";
+
+import type { FC, SelectHTMLAttributes } from "react";
 
 const Select: FC<SelectHTMLAttributes<HTMLSelectElement>> = ({ ...props }) => {
   return (

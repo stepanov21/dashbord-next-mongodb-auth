@@ -1,8 +1,10 @@
 "use client";
 
-import { Button } from "@/ui/Button";
 import React, { useEffect, useState } from "react";
 import { useMutation } from "react-query";
+
+import { Button } from "@/ui/Button";
+
 import useChangeSetting from "./useChangeSetting";
 
 const LimitRange = () => {

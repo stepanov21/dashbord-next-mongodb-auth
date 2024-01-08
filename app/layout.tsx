@@ -1,14 +1,15 @@
 "use client";
 
 import "./globals.scss";
-import Header from "@/components/layout/Header";
-import Aside from "@/components/layout/Aside";
-import NextAuthProvider from "@/auth-provider/index";
-import QueryProvider from "@/provider/QueryProvider";
 import { usePathname } from "next/navigation";
-import UserInfoProvider from "@/provider/UserInfoProvider";
-import MyThemeProvider from "@/provider/ThemeProvider";
 import { twMerge } from "tailwind-merge";
+
+import NextAuthProvider from "@/auth-provider/index";
+import Aside from "@/components/layout/Aside";
+import Header from "@/components/layout/Header";
+import QueryProvider from "@/provider/QueryProvider";
+import MyThemeProvider from "@/provider/ThemeProvider";
+import UserInfoProvider from "@/provider/UserInfoProvider";
 
 // const inter = Inter({ subsets: ["latin"] });
 

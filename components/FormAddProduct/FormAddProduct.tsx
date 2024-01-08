@@ -1,19 +1,24 @@
 "use client";
 
-import { TProduct } from "@/models/product/index";
-import { Button } from "@/ui/Button";
 import { useSession } from "next-auth/react";
 import {
-  FormEvent,
   memo,
   useState,
 } from "react";
-import Input from "../FormControls/Input";
-import Select from "../FormControls/Select";
-import { inputsData } from "./inputsData";
 import { useMutation } from "react-query";
+
+import type { TProduct } from "@/models/product/index";
 import { queryClient } from "@/provider/QueryProvider";
 import { ADD_PRODUCT } from "@/react-query/product/product";
+import { Button } from "@/ui/Button";
+
+import Input from "../FormControls/Input";
+import Select from "../FormControls/Select";
+
+import { inputsData } from "./inputsData";
+
+import type {
+  FormEvent} from "react";
 
 const FormAddProduct = () => {
   const { data: userData } = useSession();
@@ -33,7 +38,7 @@ const FormAddProduct = () => {
 
   const addNewProduct = (e: FormEvent) => {
     e.preventDefault();
-    for (let i in formData) {
+    for (const i in formData) {
       if (!formData[i]) {
         setValidError(`Field ${i} must be filled`);
         return

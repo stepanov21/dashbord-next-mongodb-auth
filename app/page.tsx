@@ -1,15 +1,16 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import { useQuery } from "react-query";
+
+import LineChart from "@/components/Charts/LineChart";
 import PieChart from "@/components/Charts/PieChart";
-import { TProduct } from "@/models/product/index";
+import type { TProduct } from "@/models/product/index";
 import {
   GET_PRODUCTS_BY_WEEK,
 } from "@/react-query/product/product";
 import { Button } from "@/ui/Button";
-import { useQuery } from "react-query";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-import { useCallback, useEffect, useState } from "react";
-import LineChart from "@/components/Charts/LineChart";
 
 
 const Home = () => {

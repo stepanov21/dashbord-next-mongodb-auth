@@ -1,4 +1,4 @@
-import { TProduct } from "@/models/product/index"
+import type { TProduct } from "@/models/product/index"
 
 type TInputVariant = {
   name: Partial<keyof TProduct>;

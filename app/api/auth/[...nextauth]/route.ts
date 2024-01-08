@@ -1,8 +1,10 @@
-import User from '@/models/user/index';
-import connectToDB from '@/database/index';
-import GoogleProvider from "next-auth/providers/google"
 import NextAuth from 'next-auth/next';
-import {NextAuthOptions} from 'next-auth';
+import GoogleProvider from "next-auth/providers/google"
+
+import connectToDB from '@/database/index';
+import User from '@/models/user/index';
+
+import type {NextAuthOptions} from 'next-auth';
 
 
 export const authOptions: NextAuthOptions = {
@@ -40,7 +42,6 @@ export const authOptions: NextAuthOptions = {
       return user;
     },
     async redirect({url, baseUrl}) {
-      console.log('baseUrl', baseUrl);
       
       return baseUrl + '/dashboard';
     }

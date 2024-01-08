@@ -1,4 +1,3 @@
-import React, { memo, useCallback } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,15 +7,19 @@ import {
   Title,
   Tooltip,
   Filler,
-  Legend,
-  ChartData,
-  ChartOptions,
+  Legend
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-import { getNumbersByMonth } from "@/utils/getNumbersByMonth";
 import { format, getDate, getDay, parseISO } from "date-fns";
+import React, { memo, useCallback } from "react";
+import { Line } from "react-chartjs-2";
 import { useQuery } from "react-query";
+
 import { GET_ALL_PRODUCTS } from "@/react-query/product/product";
+import { getNumbersByMonth } from "@/utils/getNumbersByMonth";
+
+import type {
+  ChartData,
+  ChartOptions} from "chart.js";
 
 ChartJS.register(
   CategoryScale,

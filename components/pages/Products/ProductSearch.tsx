@@ -1,5 +1,6 @@
-import { FC, InputHTMLAttributes } from "react";
 import { BiSearch } from "react-icons/bi";
+
+import type { FC, InputHTMLAttributes } from "react";
 
 interface ISearch extends InputHTMLAttributes<HTMLInputElement> {}
 

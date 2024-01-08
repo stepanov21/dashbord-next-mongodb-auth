@@ -1,6 +1,5 @@
-import { ThemeProvider, useTheme } from "next-themes"
-import { useContext, useEffect } from "react";
-import { UserContext } from "./UserInfoProvider";
+import { ThemeProvider } from "next-themes"
+
 
 const MyThemeProvider = ({children}) => {
 

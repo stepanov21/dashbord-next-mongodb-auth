@@ -1,19 +1,24 @@
 "use client";
 
-import { getAccumFromCategory } from "@/utils/getAccumFromCategory";
 import {
   Chart as ChartJS,
   ArcElement,
   Tooltip,
-  Legend,
-  ChartData,
-  ChartOptions,
+  Legend
 } from "chart.js";
 import { _DeepPartialObject } from "chart.js/dist/types/utils";
 import { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
+
+import { getAccumFromCategory } from "@/utils/getAccumFromCategory";
+
 import { selectOption } from "../FormControls/selectOption";
+
 import LabelPieChart from "./LabelPieChart";
+
+import type {
+  ChartData,
+  ChartOptions} from "chart.js";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ isLoading, data }) => {

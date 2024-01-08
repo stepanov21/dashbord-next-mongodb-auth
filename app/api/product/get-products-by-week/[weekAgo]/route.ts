@@ -1,9 +1,14 @@
-import Product, { TProduct } from "@/models/product/index";
-import connectToDB from "@/database/index";
-import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../../auth/[...nextauth]/route";
 import { formatISO, getDate, lastDayOfWeek, startOfMonth, startOfWeek } from "date-fns";
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+
+import connectToDB from "@/database/index";
+import type { TProduct } from "@/models/product/index";
+import Product from "@/models/product/index";
+
+import { authOptions } from "../../../auth/[...nextauth]/route";
+
+import type { NextRequest} from "next/server";
 
 export const dynamic = "force-dynamic";
 

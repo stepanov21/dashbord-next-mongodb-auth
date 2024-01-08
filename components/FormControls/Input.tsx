@@ -1,4 +1,6 @@
-import { FC, InputHTMLAttributes, memo } from "react";
+import { memo } from "react";
+
+import type { FC, InputHTMLAttributes} from "react";
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;

@@ -1,9 +1,10 @@
-import { TProduct } from "@/models/product";
-import { UserContext } from "@/provider/UserInfoProvider";
-import { GET_PRODUCTS_BY_DAY } from "@/react-query/product/product";
 import { useSession } from "next-auth/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
+
+import type { TProduct } from "@/models/product";
+import { UserContext } from "@/provider/UserInfoProvider";
+import { GET_PRODUCTS_BY_DAY } from "@/react-query/product/product";
 
 const scaleColor = ['#D4E95E', '#7CBDC7', '#F1D304', '#F55353']
 

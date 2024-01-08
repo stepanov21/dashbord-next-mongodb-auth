@@ -1,17 +1,18 @@
 "use client";
 
+import { useState } from "react";
+import { useQuery, useMutation } from "react-query";
+
 import FormAddProduct from "@/components/FormAddProduct/FormAddProduct";
 import FormHeader from "@/components/FormAddProduct/FormHeader";
-import ProductSearch from "@/components/pages/Products/ProductSearch";
 import ProductItem from "@/components/ProductItem/ProductItem";
 import Scale from "@/components/Scale/Scale";
+import ProductSearch from "@/components/pages/Products/ProductSearch";
 import { queryClient } from "@/provider/QueryProvider";
 import {
   DELETE_PRODUCT_BY_ID,
   GET_PRODUCTS_BY_DAY,
 } from "@/react-query/product/product";
-import { useState } from "react";
-import { useQuery, useMutation } from "react-query";
 
 const ProductPage = () => {
   const [searchValue, setSearchValue] = useState("");

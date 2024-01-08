@@ -1,9 +1,12 @@
 "use client";
 
-import { TProduct } from "@/models/product/index";
-import { FC } from "react";
 import { BiTrashAlt } from "react-icons/bi";
+
+import type { TProduct } from "@/models/product/index";
+
 import { selectOption } from "../FormControls/selectOption";
+
+import type { FC } from "react";
 
 interface IProductItem extends TProduct {
   deleteProductById: (id: string) => void;

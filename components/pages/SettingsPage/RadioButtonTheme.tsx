@@ -1,9 +1,10 @@
 "use client";
 
-import { queryClient } from "@/provider/QueryProvider";
-import { UPDATE_USER } from "@/react-query/user/user";
 import { useTheme } from "next-themes";
 import { useMutation } from "react-query";
+
+import { queryClient } from "@/provider/QueryProvider";
+import { UPDATE_USER } from "@/react-query/user/user";
 
 const RadioButtonTheme = ({ theme }: { theme: boolean }) => {
   const { systemTheme, setTheme } = useTheme();

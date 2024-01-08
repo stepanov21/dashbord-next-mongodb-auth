@@ -1,6 +1,9 @@
+import { NextResponse } from "next/server"
+
 import connectToDB from "@/database/index";
 import User from "@/models/user/index";
-import { NextRequest, NextResponse } from "next/server"
+
+import type { NextRequest} from "next/server";
 
 
 export async function GET(req: NextRequest) {

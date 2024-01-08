@@ -1,9 +1,11 @@
 "use client";
 
-import { UserContext } from "@/provider/UserInfoProvider";
-import { Button } from "@/ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useContext } from "react";
+
+import { UserContext } from "@/provider/UserInfoProvider";
+import { Button } from "@/ui/Button";
+
 import UserBage from "./UserBage";
 
 const Header = () => {

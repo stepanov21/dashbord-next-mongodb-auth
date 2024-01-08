@@ -13,19 +13,21 @@ const UserInfoProvider = ({ children }) => {
     () => GET_USER_INFO(),
     {
       onSuccess: () => console.log("Инфа юзера пришла !"),
-    }
+    },
   );
-  
+
   const { systemTheme, theme, setTheme } = useTheme();
-  const userInfo = useContext(UserContext)
+  const userInfo = useContext(UserContext);
 
   useEffect(() => {
-    setTheme(data?.data?.darkmode ? "dark" : "light")
-  }, [data?.data?.darkmode])
+    setTheme(data?.data?.darkmode ? "dark" : "light");
+  }, [data?.data?.darkmode]);
 
-  if(isLoading) return null;
+  if (isLoading) return null;
 
-  return <UserContext.Provider value={data?.data}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={data?.data}>{children}</UserContext.Provider>
+  );
 };
 
 export default UserInfoProvider;
