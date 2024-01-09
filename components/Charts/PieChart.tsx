@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend
-} from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { _DeepPartialObject } from "chart.js/dist/types/utils";
 import { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
@@ -16,9 +11,7 @@ import { selectOption } from "../FormControls/selectOption";
 
 import LabelPieChart from "./LabelPieChart";
 
-import type {
-  ChartData,
-  ChartOptions} from "chart.js";
+import type { ChartData, ChartOptions } from "chart.js";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ isLoading, data }) => {
@@ -29,7 +22,7 @@ const PieChart = ({ isLoading, data }) => {
     setCategory(
       selectOption
         .map((item) => getAccumFromCategory(data.data, item))
-        .filter((item) => item.sum !== 0)
+        .filter((item) => item.sum !== 0),
     );
   }, [isLoading, data]);
 
@@ -58,8 +51,6 @@ const PieChart = ({ isLoading, data }) => {
       },
     },
   };
-
-  console.log('Перерисовка кругялшки')
 
   return (
     <div className="grid grid-cols-[140px_1fr] mt-4 items-center">

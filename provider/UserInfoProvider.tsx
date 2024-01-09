@@ -8,12 +8,8 @@ import { useQuery } from "react-query";
 export const UserContext = createContext<Partial<IUser>>({});
 
 const UserInfoProvider = ({ children }) => {
-  const { isLoading, error, data, refetch } = useQuery(
-    "userInfo",
-    () => GET_USER_INFO(),
-    {
-      onSuccess: () => console.log("Инфа юзера пришла !"),
-    },
+  const { isLoading, error, data, refetch } = useQuery("userInfo", () =>
+    GET_USER_INFO(),
   );
 
   const { systemTheme, theme, setTheme } = useTheme();

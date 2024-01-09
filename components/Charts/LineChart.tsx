@@ -7,7 +7,7 @@ import {
   Title,
   Tooltip,
   Filler,
-  Legend
+  Legend,
 } from "chart.js";
 import { format, getDate, getDay, parseISO } from "date-fns";
 import React, { memo, useCallback } from "react";
@@ -17,9 +17,7 @@ import { useQuery } from "react-query";
 import { GET_ALL_PRODUCTS } from "@/react-query/product/product";
 import { getNumbersByMonth } from "@/utils/getNumbersByMonth";
 
-import type {
-  ChartData,
-  ChartOptions} from "chart.js";
+import type { ChartData, ChartOptions } from "chart.js";
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +27,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Filler,
-  Legend
+  Legend,
 );
 
 const LineChart = () => {
@@ -49,12 +47,10 @@ const LineChart = () => {
       },
     },
   };
-  
-  console.log(dataProducts);
 
   const filterByDay = (data, day) => {
     return data.filter((item) =>
-      getDate(parseISO(item.createdAt)) === day ? item : null
+      getDate(parseISO(item.createdAt)) === day ? item : null,
     );
   };
 
@@ -62,7 +58,7 @@ const LineChart = () => {
     return getNumbersByMonth().map((day) => {
       return filterByDay(dataProducts.data, day).reduce(
         (acc, item) => acc + item.price,
-        0
+        0,
       );
     });
   };
@@ -85,6 +81,6 @@ const LineChart = () => {
       <Line options={options} data={data} />
     </div>
   );
-}
+};
 
 export default memo(LineChart);

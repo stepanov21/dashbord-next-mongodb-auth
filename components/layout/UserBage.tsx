@@ -25,8 +25,6 @@ const UserBage: FC<IUserBage> = ({
   const start = getTime(parseISO(createdAt));
   const end = getTime(new Date());
 
-  console.log(Math.floor((end - start) / 1000 / 60 / 60 / 24));
-
   return (
     <div
       {...props}
