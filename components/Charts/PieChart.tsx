@@ -12,6 +12,7 @@ import { selectOption } from "../FormControls/selectOption";
 import LabelPieChart from "./LabelPieChart";
 
 import type { ChartData, ChartOptions } from "chart.js";
+import PieChartSkeleton from "../Sceletons/PieChartSkeleton";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ isLoading, data }) => {
@@ -26,7 +27,7 @@ const PieChart = ({ isLoading, data }) => {
     );
   }, [isLoading, data]);
 
-  if (isLoading) null;
+  if (isLoading || !category.length) return <PieChartSkeleton />;
 
   const dataForChart: ChartData<"pie"> = {
     labels: ["undefined"],

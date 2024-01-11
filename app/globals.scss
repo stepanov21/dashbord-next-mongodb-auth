@@ -14,8 +14,8 @@ body {
 }
 
 :root {
-	--primary-color: #F1D304;
-	--secondary-color: #e6eef9;
+  --primary-color: #f1d304;
+  --secondary-color: #e6eef9;
 }
 
 ::-webkit-scrollbar {
@@ -52,86 +52,126 @@ body {
   background: transparent;
 }
 
-
 h2 {
   font-size: 18px;
 }
 .btn-shadow {
   border: 1px solid black;
   box-shadow: 1px 2px 0px 0px black;
-	@apply dark:border-[#111111]
+  @apply dark:border-[#111111];
 }
-
-
 
 .tabs {
   display: flex;
-	position: relative;
-	background-color: #F5E8DF;
+  position: relative;
+  background-color: #f5e8df;
   padding: 12px;
-	border-radius: 5px; // just a high number to create pill effect
-	* {
-		z-index: 2;
-	}
+  border-radius: 5px; // just a high number to create pill effect
+  * {
+    z-index: 2;
+  }
 }
 
 input[type="radio"] {
-	display: none;
+  display: none;
 }
 
 .tab {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 40px;
-	width: 150px;
-	font-size: 1rem;
-	font-weight: 500;
-	border-radius: 15px; // just a high number to create pill effect
-	cursor: pointer;
-	transition: color 0.15s ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 150px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 15px; // just a high number to create pill effect
+  cursor: pointer;
+  transition: color 0.15s ease-in;
 }
 
 input[type="radio"] {
-	&:checked {
-		& + label {
-			color: black;
-			& > .notification {
-				background-color: #7CBDC7;
-				color: #fff;
-			}
-		}
-	}
+  &:checked {
+    & + label {
+      color: black;
+      & > .notification {
+        background-color: #7cbdc7;
+        color: #fff;
+      }
+    }
+  }
 }
 
 input[id="radio-1"] {
-	&:checked {
-		& ~ .glider {
-			transform: translateX(0);
-		}
-	}
+  &:checked {
+    & ~ .glider {
+      transform: translateX(0);
+    }
+  }
 }
 
 input[id="radio-2"] {
-	&:checked {
-		& ~ .glider {
-			transform: translateX(100%);
-		}
-	}
+  &:checked {
+    & ~ .glider {
+      transform: translateX(100%);
+    }
+  }
 }
 
 .glider {
-	position: absolute;
-	display: flex;
-	height: 40px;
-	width: 150px;
-	background-color: #7CBDC7;
-	z-index: 1;
-	border-radius: 5px; // just a high number to create pill effect
-	transition: 0.25s ease-out;
+  position: absolute;
+  display: flex;
+  height: 40px;
+  width: 150px;
+  background-color: #7cbdc7;
+  z-index: 1;
+  border-radius: 5px; // just a high number to create pill effect
+  transition: 0.25s ease-out;
   border: 1px solid black;
 }
 
+@-webkit-keyframes shine-loading-image {
+  0% {
+    background-position: -32px;
+  }
+  40%,
+  100% {
+    background-position: 208px;
+  }
+}
 
+.bg-skeleton {
+  background: #eddbce;
+  background-image: -webkit-linear-gradient(
+    left,
+    #eddbce 0px,
+    #f3e1d5 40px,
+    #eddbce 80px
+  );
+  background-image: -o-linear-gradient(
+    left,
+    #eddbce 0px,
+    #f3e1d5 40px,
+    #eddbce 80px
+  );
+  background-image: linear-gradient(
+    90deg,
+    #eddbce 0px,
+    #f3e1d5 40px,
+    #eddbce 80px
+  );
+  background-size: 250px;
+  opacity: 0.5;
+  border-radius: 10px;
+  -webkit-animation: shine-loading-image 2s infinite ease-out;
+  animation: shine-loading-image 2s infinite ease-out;
+}
 
-
+@keyframes shine-loading-image {
+  0% {
+    background-position: -32px;
+  }
+  40%,
+  100% {
+    background-position: 208px;
+  }
+}

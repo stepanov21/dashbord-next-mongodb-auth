@@ -30,10 +30,9 @@ const ProductItem: FC<IProductItem> = ({
         {price} <span className="">₴</span>
       </span>
       <div
-        className={`h-3 w-3 border border-[black] mx-auto rounded-full bg-[${colorCategory?.color}]`}></div>
-      <span
-        className="flex justify-end"
-        onClick={() => deleteProductById(_id!)}>
+        className={`h-3 w-3 border border-[black] mx-auto rounded-full bg-[${colorCategory?.color}]`}
+      ></div>
+      <span className="flex justify-end" onClick={() => deleteProductById(_id)}>
         <BiTrashAlt size={18} />
       </span>
     </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { cn } from "@/utils/cn";
@@ -9,8 +11,9 @@ const LabelPieChart = ({ color, name }) => {
         className={cn(
           `min-h-[10px] min-w-[10px] inline-block rounded-full border border-[#000]
       `,
-          `bg-[${color}]`
-        )}></span>
+          `bg-[${color}]`,
+        )}
+      ></span>
       {name}
     </li>
   );

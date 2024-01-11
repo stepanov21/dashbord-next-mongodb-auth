@@ -1,10 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import {
-  memo,
-  useState,
-} from "react";
+import { memo, useState } from "react";
 import { useMutation } from "react-query";
 
 import type { TProduct } from "@/models/product/index";
@@ -17,8 +14,7 @@ import Select from "../FormControls/Select";
 
 import { inputsData } from "./inputsData";
 
-import type {
-  FormEvent} from "react";
+import type { FormEvent } from "react";
 
 const FormAddProduct = () => {
   const { data: userData } = useSession();
@@ -27,7 +23,7 @@ const FormAddProduct = () => {
   const [formData, setFormData] = useState<TProduct>({
     productName: "",
     count: 1,
-    price: null,
+    price: 0,
     category: "",
     email: "main",
   });
@@ -41,8 +37,10 @@ const FormAddProduct = () => {
     for (const i in formData) {
       if (!formData[i]) {
         setValidError(`Field ${i} must be filled`);
-        return
-      } else {setValidError('')}
+        return;
+      } else {
+        setValidError("");
+      }
     }
 
     console.log(validError, formData);
@@ -61,7 +59,8 @@ const FormAddProduct = () => {
         <h2>My spending today:</h2>
         <Button
           className="bg-yellow px-[30px]"
-          onClick={() => setIsOpenModal(true)}>
+          onClick={() => setIsOpenModal(true)}
+        >
           Add new
         </Button>
       </div>
@@ -69,8 +68,9 @@ const FormAddProduct = () => {
         <form
           data-close="true"
           onClick={(e) => closeModalOutside(e as any)}
-          onSubmit={(e) => addNewProduct(e)} 
-          className="absolute inset-0 bg-[black] bg-opacity-50 flex items-center justify-center p-3 z-10">
+          onSubmit={(e) => addNewProduct(e)}
+          className="absolute inset-0 bg-[black] bg-opacity-50 flex items-center justify-center p-3 z-10"
+        >
           <div className="relative bg-milk dark:bg-gray w-full max-w-[350px] rounded-main px-4 py-4 flex flex-col gap-3 btn-shadow">
             {inputsData &&
               inputsData.length &&

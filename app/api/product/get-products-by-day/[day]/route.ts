@@ -4,35 +4,43 @@ import { getServerSession } from "next-auth/next";
 
 import connectToDB from "@/database/index";
 import type { TProduct } from "@/models/product/index";
-import Product from "@/models/product/index";
 
 import { authOptions } from "../../../auth/[...nextauth]/route";
 
-import type { NextRequest} from "next/server";
+import type { NextRequest } from "next/server";
+import User from "@/models/user";
+import { filterByDate } from "@/utils/filterByDate";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest, { params }) {
-
   const day = params.day;
 
-  const session = await getServerSession(authOptions)
-  
+  const session = await getServerSession(authOptions);
+
   try {
     await connectToDB();
 
-    const currentUser: TProduct[] | null = await Product.find({email: session?.user?.email, 
-      createdAt: {
-        $gte: formatISO(endOfYesterday()),
-        $lt:formatISO(endOfDay(new Date())),
-      }
-    });
+    const currentUser: TProduct[] | null = await User.findOne(
+      { email: session?.user?.email },
+      "products",
+    );
+
+    const prodByWeek = filterByDate(
+      currentUser,
+      endOfDay(new Date()),
+      endOfYesterday(),
+    );
+    // createdAt: {
+    //   $gte: formatISO(endOfYesterday()),
+    //   $lt:formatISO(endOfDay(new Date())),
+    // }
 
     if (currentUser) {
       return NextResponse.json({
         success: true,
         message: "Продукты есть!",
-        data: currentUser
+        data: prodByWeek,
       });
     } else {
       return NextResponse.json({

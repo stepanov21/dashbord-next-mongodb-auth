@@ -21,17 +21,18 @@ const ProductPage = () => {
     () => GET_PRODUCTS_BY_DAY(),
     {
       onSuccess: () => console.log("Продукты финиш !"),
-    }
+    },
   );
 
   const deleteProductById = useMutation(DELETE_PRODUCT_BY_ID, {
+    onError: () => console.log("Жопа"),
     onSuccess: () => queryClient.refetchQueries(["dataByDay"]),
   });
 
   return (
     <div className="">
       <FormAddProduct />
-      <Scale/>
+      <Scale />
       <div className="btn-shadow bg-milk dark:bg-gray border-b-none p-3 rounded-main mt-4 rounded-b-none">
         <ProductSearch
           value={searchValue}
@@ -55,7 +56,7 @@ const ProductPage = () => {
                   key={key}
                   {...product}
                   _id={product._id}
-                  deleteProductById={deleteProductById.mutate}
+                  deleteProductById={deleteProductById.mutateAsync}
                 />
               );
             })}

@@ -2,7 +2,7 @@ import { TProduct } from "@/models/product";
 
 export const getAccumFromCategory = (
   data: TProduct[],
-  filter: { name: string; color: string }
+  filter: { name: string; color: string },
 ) => {
   const category = data.filter((item) => {
     if (item.category === filter.name) {
@@ -12,5 +12,9 @@ export const getAccumFromCategory = (
     }
   });
 
-  return {name: filter.name, sum: category.reduce((a, i) => a + i.price, 0), color: filter.color};
+  return {
+    name: filter.name,
+    sum: category.reduce((a, i) => a + i.price * i.count, 0),
+    color: filter.color,
+  };
 };

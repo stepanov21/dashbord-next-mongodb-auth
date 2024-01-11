@@ -1,3 +1,5 @@
+"use client";
+
 import { IUser } from "@/models/user";
 import { GET_USER_INFO } from "@/react-query/user/user";
 import { useSession } from "next-auth/react";

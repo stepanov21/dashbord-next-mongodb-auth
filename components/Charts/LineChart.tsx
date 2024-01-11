@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -57,7 +59,7 @@ const LineChart = () => {
   const dataProductsByMonthDay = () => {
     return getNumbersByMonth().map((day) => {
       return filterByDay(dataProducts.data, day).reduce(
-        (acc, item) => acc + item.price,
+        (acc, item) => acc + item.price * item.count,
         0,
       );
     });

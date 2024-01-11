@@ -18,16 +18,12 @@ export async function POST(req: NextRequest) {
 
     const session = await getServerSession(authOptions);
 
-    const addedProduct = await Product.create(product);
-
-    const currentUser = await User.findOne({ email: session.user.email });
-
     const updateUser = await User.updateOne(
       { email: session.user.email },
       { $push: { products: product } },
     );
 
-    if (addedProduct && updateUser) {
+    if (updateUser) {
       return NextResponse.json({
         success: true,
         message: "Продукт добавлен",

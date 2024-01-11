@@ -27,9 +27,9 @@ const Home = () => {
         const category = data.filter((item) =>
           item.category === filter ? item : null,
         );
-        return category.reduce((a, i) => a + i.price, 0);
+        return category.reduce((a, i) => a + i.price * i.count, 0);
       }
-      return data.reduce((a, i) => a + i.price, 0);
+      return data.reduce((a, i) => a + i.price * i.count, 0);
     },
     [data],
   );
@@ -54,7 +54,7 @@ const Home = () => {
           <BiLeftArrowAlt />
         </Button>
         <div className="btn-shadow rounded-main flex-1 flex items-center px-4 justify-between  dark:bg-gray">
-          <h2>Current week:</h2>
+          <h2>{weekAgo ? `${weekAgo} weeks ago:` : "Current week:"}</h2>
           <span>{getAccumFromCategory(data?.data)}₴</span>
         </div>
         <Button
@@ -71,6 +71,7 @@ const Home = () => {
       {/* <Card filter="Итого" sum={getAccumFromCategory(data?.data)} /> */}
       <div className="grid">
         <PieChart isLoading={isLoading} data={data} />
+        <h2 className="text-center mt-6">Spending for Month</h2>
         <LineChart />
       </div>
     </>
