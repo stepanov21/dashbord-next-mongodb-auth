@@ -7,9 +7,11 @@ const PieChartSkeleton = () => {
         <li className="flex gap-2 items-center p-4 dark:bg-gray rounded-main bg-skeleton "></li>
       </div>
       <div
-        className="my-0 mx-auto mt-4 self-center h-[300px] w-[300px] bg-skeleton"
+        className="my-0 mx-auto mt-4 self-center h-[300px] w-[300px] bg-skeleton flex items-center justify-center"
         style={{ borderRadius: "50%" }}
-      ></div>
+      >
+        No Data
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 export interface TProduct {
-  createdAt?: number | Date;
   _id?: string;
   productName: string;
   count: number;
