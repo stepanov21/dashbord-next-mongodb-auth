@@ -12,7 +12,7 @@ import connectToDB from "@/database/index";
 import type { TProduct } from "@/models/product/index";
 import Product from "@/models/product/index";
 
-import { authOptions } from "../../../auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOption";
 
 import type { NextRequest } from "next/server";
 import User from "@/models/user";

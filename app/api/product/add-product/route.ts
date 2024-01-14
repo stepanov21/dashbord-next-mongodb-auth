@@ -7,7 +7,7 @@ import Product from "@/models/product/index";
 import type { NextRequest } from "next/server";
 import User from "@/models/user";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOption";
 
 export const dynamic = "force-dynamic";
 
